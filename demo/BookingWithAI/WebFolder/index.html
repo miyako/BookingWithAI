@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kestrel Health — Care that keeps its appointments</title>
+<style>
+	:root {
+		--ink: #12181f;
+		--cobalt: #2451d6;
+		--cobalt-deep: #17348c;
+		--cobalt-tint: #eef2fb;
+		--mist: #f5f6f8;
+		--line: #e2e5ea;
+		--slate: #5b6470;
+		--mint: #1f9d6b;
+		--mint-tint: #dbf0e5;
+	}
+	* { box-sizing: border-box; }
+	html, body {
+		margin: 0;
+		padding: 0;
+		font-family: -apple-system, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+		color: var(--ink);
+		background: #ffffff;
+		-webkit-font-smoothing: antialiased;
+	}
+	body { line-height: 1.5; }
+	h1, h2, h3 { line-height: 1.15; margin: 0; text-wrap: balance; }
+	p { margin: 0; }
+	a { color: inherit; }
+	img, svg { display: block; max-width: 100%; }
+	.wrap {
+		max-width: 1080px;
+		margin: 0 auto;
+		padding: 0 32px;
+	}
+
+	/* ---- Header ---- */
+	header {
+		position: sticky;
+		top: 0;
+		z-index: 10;
+		background: rgba(255,255,255,0.92);
+		backdrop-filter: blur(6px);
+		border-bottom: 1px solid var(--line);
+	}
+	.headerRow {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		height: 72px;
+	}
+	.brand {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		font-weight: 700;
+		font-size: 17px;
+		letter-spacing: -0.01em;
+	}
+	.mark {
+		width: 34px;
+		height: 34px;
+		border-radius: 9px;
+		background: linear-gradient(155deg, var(--cobalt) 0%, var(--cobalt-deep) 100%);
+		position: relative;
+		flex: none;
+	}
+	.mark::before, .mark::after {
+		content: "";
+		position: absolute;
+		background: #f7f9ff;
+	}
+	.mark::before {
+		width: 15px;
+		height: 4px;
+		border-radius: 2px;
+		top: 14px;
+		left: 6px;
+		transform: rotate(-28deg);
+	}
+	.mark::after {
+		width: 15px;
+		height: 4px;
+		border-radius: 2px;
+		top: 14px;
+		left: 13px;
+		transform: rotate(28deg);
+	}
+	nav {
+		display: flex;
+		align-items: center;
+		gap: 32px;
+	}
+	nav .links {
+		display: flex;
+		gap: 28px;
+		font-size: 14px;
+		font-weight: 500;
+		color: var(--slate);
+	}
+	nav .links a:hover { color: var(--ink); }
+	.btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 8px;
+		border-radius: 9px;
+		font-weight: 600;
+		font-size: 14px;
+		text-decoration: none;
+		padding: 11px 20px;
+		border: 1px solid transparent;
+		cursor: pointer;
+		transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+	}
+	.btn.primary { background: var(--cobalt); color: #f8f9fb; }
+	.btn.primary:hover { background: var(--cobalt-deep); }
+	.btn.ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+	.btn.ghost:hover { border-color: var(--slate); }
+
+	/* ---- Hero ---- */
+	.hero {
+		padding: 88px 0 96px;
+		background:
+			radial-gradient(560px 320px at 88% 8%, var(--cobalt-tint) 0%, rgba(238,242,251,0) 70%);
+	}
+	.heroGrid {
+		display: grid;
+		grid-template-columns: 1.05fr 0.95fr;
+		gap: 56px;
+		align-items: center;
+	}
+	.eyebrow {
+		display: inline-flex;
+		align-items: center;
+		gap: 7px;
+		font-size: 12.5px;
+		font-weight: 700;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+		color: var(--cobalt-deep);
+		background: var(--cobalt-tint);
+		border-radius: 999px;
+		padding: 6px 13px 6px 10px;
+		margin-bottom: 20px;
+	}
+	.eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--mint); }
+	.hero h1 {
+		font-size: 47px;
+		font-weight: 700;
+		letter-spacing: -0.02em;
+		margin-bottom: 20px;
+	}
+	.hero .sub {
+		font-size: 17px;
+		color: var(--slate);
+		max-width: 480px;
+		margin-bottom: 32px;
+	}
+	.heroActions { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+	.telLink { font-size: 14px; font-weight: 600; color: var(--slate); text-decoration: none; }
+	.telLink span { color: var(--ink); }
+
+	/* ---- Hero preview card ---- */
+	.previewCard {
+		background: var(--mist);
+		border: 1px solid var(--line);
+		border-radius: 18px;
+		padding: 18px;
+	}
+	.previewChrome {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		padding: 2px 4px 14px;
+	}
+	.previewChrome span {
+		width: 9px; height: 9px; border-radius: 50%; background: var(--line);
+	}
+	.previewMsgs { display: flex; flex-direction: column; gap: 10px; }
+	.pBubble {
+		max-width: 82%;
+		padding: 10px 13px;
+		border-radius: 13px;
+		font-size: 13.5px;
+		line-height: 1.4;
+	}
+	.pBubble.user {
+		align-self: flex-end;
+		background: var(--cobalt);
+		color: #f8f9fb;
+		border-bottom-right-radius: 4px;
+	}
+	.pBubble.ai {
+		align-self: flex-start;
+		background: #ffffff;
+		border: 1px solid var(--line);
+		border-bottom-left-radius: 4px;
+	}
+	.pCode {
+		display: inline-block;
+		background: var(--mint-tint);
+		color: var(--mint);
+		font-weight: 700;
+		padding: 1px 8px;
+		border-radius: 999px;
+		font-size: 12.5px;
+	}
+	.pSlots { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 9px; }
+	.pSlot {
+		font-size: 12px;
+		font-weight: 600;
+		color: var(--cobalt);
+		background: var(--cobalt-tint);
+		border: 1px solid #b7c9f2;
+		border-radius: 999px;
+		padding: 6px 11px;
+	}
+
+	/* ---- Sections ---- */
+	section { padding: 88px 0; }
+	.sectionHead { max-width: 560px; margin-bottom: 44px; }
+	.sectionHead .eyebrow { background: none; padding: 0; margin-bottom: 12px; color: var(--slate); }
+	.sectionHead h2 { font-size: 31px; letter-spacing: -0.015em; margin-bottom: 12px; }
+	.sectionHead p { color: var(--slate); font-size: 15.5px; }
+
+	.services { background: var(--mist); }
+	.cardGrid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 20px;
+	}
+	.card {
+		background: #ffffff;
+		border: 1px solid var(--line);
+		border-radius: 16px;
+		padding: 26px 24px;
+	}
+	.cardIcon {
+		width: 42px;
+		height: 42px;
+		border-radius: 11px;
+		background: var(--cobalt-tint);
+		margin-bottom: 18px;
+		position: relative;
+	}
+	.cardIcon::before {
+		content: "";
+		position: absolute;
+		inset: 12px;
+		border-radius: 4px;
+		background: var(--cobalt);
+	}
+	.card h3 { font-size: 17px; margin-bottom: 6px; }
+	.card .who { font-size: 13px; font-weight: 600; color: var(--cobalt-deep); margin-bottom: 10px; }
+	.card p.desc { color: var(--slate); font-size: 14px; }
+
+	.steps {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 32px;
+	}
+	.step { position: relative; padding-left: 4px; }
+	.step .num {
+		font-size: 13px;
+		font-weight: 700;
+		color: var(--cobalt);
+		background: var(--cobalt-tint);
+		width: 26px;
+		height: 26px;
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin-bottom: 16px;
+	}
+	.step h3 { font-size: 16.5px; margin-bottom: 8px; }
+	.step p { color: var(--slate); font-size: 14px; }
+
+	.ctaBand {
+		background: linear-gradient(155deg, var(--cobalt) 0%, var(--cobalt-deep) 100%);
+		border-radius: 22px;
+		padding: 52px 48px;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 24px;
+		flex-wrap: wrap;
+		color: #f8f9fb;
+	}
+	.ctaBand h2 { font-size: 26px; letter-spacing: -0.01em; margin-bottom: 8px; }
+	.ctaBand p { color: rgba(248,249,251,0.8); font-size: 14.5px; }
+	.ctaBand .btn.primary { background: #ffffff; color: var(--cobalt-deep); }
+	.ctaBand .btn.primary:hover { background: #eef2fb; }
+
+	footer {
+		border-top: 1px solid var(--line);
+		padding: 40px 0;
+	}
+	.footRow {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		flex-wrap: wrap;
+		gap: 24px;
+	}
+	.footBrand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 14.5px; }
+	.footMeta { font-size: 13px; color: var(--slate); text-align: right; }
+	.footMeta div + div { margin-top: 4px; }
+
+	@media (max-width: 860px) {
+		.heroGrid { grid-template-columns: 1fr; }
+		.cardGrid, .steps { grid-template-columns: 1fr; }
+		nav .links { display: none; }
+		.hero h1 { font-size: 36px; }
+		.footRow { flex-direction: column; }
+		.footMeta { text-align: left; }
+	}
+
+	@media (prefers-color-scheme: dark) {
+		html, body { background: #0f1319; color: #e9ecf2; }
+		header { background: rgba(15,19,25,0.86); border-color: #232a35; }
+		.line, .card, header, footer { border-color: #232a35; }
+		.card { background: #161c25; border-color: #232a35; }
+		.previewCard { background: #161c25; border-color: #232a35; }
+		.pBubble.ai { background: #1d2430; border-color: #2a3240; color: #e9ecf2; }
+		.services { background: #131820; }
+		.btn.ghost { border-color: #2a3240; color: #e9ecf2; }
+		.eyebrow { color: #a9c0f5; background: #1a2338; }
+		.sectionHead .eyebrow { background: none; color: #8b95a6; }
+		.hero .sub, .card p.desc, .step p, .sectionHead p, .footMeta, nav .links { color: #8b95a6; }
+		footer, header, .card, .previewCard { border-color: #232a35; }
+	}
+</style>
+</head>
+<body>
+
+<header>
+	<div class="wrap headerRow">
+		<div class="brand"><span class="mark"></span> Kestrel Health</div>
+		<nav>
+			<div class="links">
+				<a href="#services">Services</a>
+				<a href="#how">How it works</a>
+				<a href="#contact">Contact</a>
+			</div>
+			<a class="btn primary" href="webchat.html">Book now</a>
+		</nav>
+	</div>
+</header>
+
+<section class="hero">
+	<div class="wrap heroGrid">
+		<div>
+			<div class="eyebrow"><span class="dot"></span> AI-assisted booking, live 24/7</div>
+			<h1>Care that keeps its appointments.</h1>
+			<p class="sub">Tell our assistant what you need in plain language. It checks real availability across our clinicians and confirms your visit on the spot — no hold music, no back-and-forth.</p>
+			<div class="heroActions">
+				<a class="btn primary" href="webchat.html">Chat with our assistant</a>
+				<a class="telLink" href="tel:+15550192044">Prefer to call? <span>(555) 019-2044</span></a>
+			</div>
+		</div>
+		<div class="previewCard">
+			<div class="previewChrome"><span></span><span></span><span></span></div>
+			<div class="previewMsgs">
+				<div class="pBubble user">Can I see Dr. Martin this week?</div>
+				<div class="pBubble ai">
+					Dr. Jean Martin (Cardiology) has these openings this week:
+					<div class="pSlots">
+						<span class="pSlot">Wed · 14:30</span>
+						<span class="pSlot">Thu · 09:00</span>
+						<span class="pSlot">Fri · 16:00</span>
+					</div>
+				</div>
+				<div class="pBubble user">Thursday morning works.</div>
+				<div class="pBubble ai">Booked — you're confirmed. Your code is <span class="pCode">APT-7F3K2Q</span>.</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="services" id="services">
+	<div class="wrap">
+		<div class="sectionHead">
+			<div class="eyebrow">Our specialties</div>
+			<h2>Three ways we look after you.</h2>
+			<p>Every clinician on our roster is bookable directly through the assistant — same availability the front desk sees.</p>
+		</div>
+		<div class="cardGrid">
+			<div class="card">
+				<div class="cardIcon"></div>
+				<h3>Cardiology</h3>
+				<div class="who">Dr. Jean Martin</div>
+				<p class="desc">Heart health check-ups, follow-ups, and consultations for ongoing cardiac care.</p>
+			</div>
+			<div class="card">
+				<div class="cardIcon"></div>
+				<h3>General Medicine</h3>
+				<div class="who">Dr. Claire Bernard</div>
+				<p class="desc">Annual physicals, everyday illness, and referrals — your first stop for most concerns.</p>
+			</div>
+			<div class="card">
+				<div class="cardIcon"></div>
+				<h3>Patient Support</h3>
+				<div class="who">Paul Dupuis</div>
+				<p class="desc">Billing questions, equipment support, and help navigating your care plan.</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section id="how">
+	<div class="wrap">
+		<div class="sectionHead">
+			<div class="eyebrow">How it works</div>
+			<h2>Booked in three messages, not three calls.</h2>
+		</div>
+		<div class="steps">
+			<div class="step">
+				<div class="num">1</div>
+				<h3>Tell us what you need</h3>
+				<p>Say who you'd like to see, or just describe the issue — the assistant figures out the right specialty.</p>
+			</div>
+			<div class="step">
+				<div class="num">2</div>
+				<h3>We check live availability</h3>
+				<p>It looks up real open slots for that clinician and offers you concrete times to pick from.</p>
+			</div>
+			<div class="step">
+				<div class="num">3</div>
+				<h3>Get your confirmation code</h3>
+				<p>Your visit is booked instantly with an APT-XXXXXX code you can use to look it up or reschedule anytime.</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section id="contact">
+	<div class="wrap">
+		<div class="ctaBand">
+			<div>
+				<h2>Ready when you are.</h2>
+				<p>Start a conversation and have your visit confirmed in under a minute.</p>
+			</div>
+			<a class="btn primary" href="webchat.html">Chat with our assistant</a>
+		</div>
+	</div>
+</section>
+
+<footer>
+	<div class="wrap footRow">
+		<div class="footBrand"><span class="mark"></span> Kestrel Health</div>
+		<div class="footMeta">
+			<div>14 Harrow Lane, Riverside District</div>
+			<div>(555) 019-2044 · care@kestrelhealth.example</div>
+			<div>© 2026 Kestrel Health Clinic. Demo application.</div>
+		</div>
+	</div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,8 @@
+{
+	"providers": {
+		"Provider": {
+			"baseURL": "test",
+			"apiKey": "test"
+		}
+	}
+}

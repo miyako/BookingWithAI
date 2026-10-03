@@ -1,0 +1,77 @@
+{
+	"(Default Forms)": {},
+	"(Default Project Methods)": {},
+	"(Default Tables)": {},
+	"Classes": {
+		"classes": [
+			"AppointmentEntity",
+			"ClientEntity",
+			"DataStore",
+			"StaffEntity"
+		]
+	},
+	"Demo": {
+		"groups": [
+			"Classes",
+			"Forms",
+			"Methods",
+			"Tables"
+		]
+	},
+	"Forms": {
+		"forms": [
+			"Admin",
+			"Splash"
+		]
+	},
+	"Methods": {
+		"methods": [
+			"AdminForm_CancelSelected",
+			"AdminForm_LoadAppointments",
+			"AdminForm_Search",
+			"APT_ComputeFreeSlots",
+			"APT_DigitsOnly",
+			"APT_FindClientEntity",
+			"APT_GetOpenAIKey",
+			"APT_GetToolDefinitions",
+			"APT_Open",
+			"APT_Seed",
+			"APT_ShowSplash",
+			"APT_SystemPrompt",
+			"APT_TextOrEmpty",
+			"APT_TitleCase",
+			"APT_Tool_CancelAppointment",
+			"APT_Tool_CheckAvailability",
+			"APT_Tool_CreateAppointment",
+			"APT_Tool_CreateClient",
+			"APT_Tool_Dispatch",
+			"APT_Tool_FindClient",
+			"APT_Tool_GetAppointmentByCode",
+			"APT_Tool_GetAppointmentDetails",
+			"APT_Tool_GetNextAvailable",
+			"APT_Tool_GetStaffList",
+			"APT_Tool_GetWeekAvailability",
+			"APT_Tool_ListAppointments",
+			"APT_Tool_RescheduleAppointment",
+			"APT_WebChat_Handle",
+			"APT_WebChat_RunTurn",
+			"runDemo"
+		]
+	},
+	"Tables": {
+		"tables": [
+			"Appointment",
+			"Availability",
+			"Client",
+			"Conversation",
+			"Staff"
+		]
+	},
+	"trash": {
+		"groups": [
+			"(Default Forms)",
+			"(Default Project Methods)",
+			"(Default Tables)"
+		]
+	}
+}

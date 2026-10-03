@@ -13,7 +13,7 @@ The workflow and checkpoints are in `.github/copilot-instructions.md`. This file
 | Step | Tool | Input → output |
 |---|---|---|
 | inspect | `tools/inspect_pdf.py [--write]` | PDF → style report + suggested `technote.json` |
-| extract | `tools/extract.py [--force]` | PDF → `src/<src>.md`, `figures/fig-NN.png`, `fig-NN.<src>.txt`, `layout/fig-NN.json` |
+| extract | `tools/extract.py [--force] [--dry-run]` | PDF → `src/<src>.md`, `figures/fig-NN.png`, `fig-NN.<src>.txt`, `layout/fig-NN.json` |
 | check | `tools/build.py --check` | `src/<src>.md` vs `src/<tgt>.md`: code blocks identical, figure refs equal |
 | figures | `tools/render_figures.py` | `figures/` → `build/figures/fig-NN.png` |
 | review | `tools/contact_sheet.py [--compare] [NN ...]` | → `build/contact-N.png` |
@@ -39,9 +39,11 @@ The workflow and checkpoints are in `.github/copilot-instructions.md`. This file
 | `heading.fonts` | Substrings of font names that mark headings; with `heading.min_size` |
 | `heading.levels_by_x` | `{"x": level}`: heading level by left x (nearest within 6 pt); otherwise `default_level` |
 | `code.colors` | Hex colours of syntax-highlighted code spans (Word exports code as coloured text) |
-| `code.fonts` | Monospace font substrings; `code.indent` = minimum x offset for code continuation lines |
-| `bullets.fonts` / `strip_fonts` | Glyph fonts that mark list items / fonts of separator spans to drop |
-| `caption.italic`, `caption.min_x` | Captions are italic lines starting right of `min_x` |
+| `code.fonts` | Monospace font substrings; `code.indent` = minimum x offset for code continuation lines (`null`: only colour/font marks code) |
+| `bullets.fonts` / `strip_fonts` / `glyphs` | Glyph fonts that mark list items / fonts of separator spans to drop / marker characters set in the body font (`•`) |
+| `caption.italic`, `caption.min_x`, `caption.max_size` | Captions are italic lines starting right of `min_x`, at most `max_size` pt (null: any size) |
+| `quote.italic` | `true`: fully italic lines that are not captions become `>` blockquotes (notes, quoted user input) |
+| `figure.min_width_pt` | Images narrower than this (inline icons) are not extracted as figures |
 | `table.size` | Font size used only by table cells (or null) |
 | `paragraph.gap`, `short_line_x1` | Start a new paragraph after a vertical gap > `gap`, or after a short line ending in `.` or `:` |
 | `ocr.psm`, `min_conf`, `noise` | Tesseract page-segmentation mode, word confidence threshold, regex of junk lines |
@@ -69,6 +71,10 @@ monospace font for code instead of colours, `code.colors` can stay empty.
   - the language is guessed: `json`, `html`, `js`, `text`, otherwise `4d`
   - indentation comes from leading spaces or relative x
 - Inline: bold spans → `**…**`; inline code-coloured or monospace spans → `` `…` ``.
+- Lines on the same row (within 2 pt) are ordered by x, so a bullet glyph comes before its text.
+- Tables: columns come from the first (header) row; a row without a first cell continues the previous row
+  (wrapped cell text); a repeated header after a page break is dropped; a different all-bold row starts a new table.
+- `--dry-run` prints the Markdown without writing anything: use it to tune `technote.json` before extracting.
 - Figures: raster images become `figures/fig-NN.png` (RGBA composited onto white) in document order, with
   `![caption](fig-NN)` placed where the image sits.
   - `layout/fig-NN.json` stores `source`, `page`, `width_pt` (the placed width, reused in the rebuild) and

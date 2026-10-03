@@ -1,0 +1,332 @@
+{
+	"$4d": {
+		"version": "1",
+		"kind": "form"
+	},
+	"windowSizingX": "fixed",
+	"windowSizingY": "fixed",
+	"windowMinWidth": 800,
+	"windowMinHeight": 540,
+	"windowMaxWidth": 800,
+	"windowMaxHeight": 540,
+	"rightMargin": 20,
+	"bottomMargin": 20,
+	"events": [
+		"onLoad",
+		"onPageChange",
+		"onValidate",
+		"onClick",
+		"onDoubleClick",
+		"onOutsideCall",
+		"onBeginDragOver",
+		"onDragOver",
+		"onDrop",
+		"onAfterKeystroke",
+		"onMenuSelect",
+		"onPluginArea",
+		"onAfterEdit",
+		"onTimer",
+		"onBoundVariableChange"
+	],
+	"windowTitle": "demoAPT · Kestrel Health",
+	"destination": "detailScreen",
+	"pages": [
+		{
+			"objects": {}
+		},
+		{
+			"objects": {
+				"sidebarBg": {
+					"type": "rectangle",
+					"top": 0,
+					"left": 0,
+					"width": 280,
+					"height": 540,
+					"fill": "#17348c",
+					"stroke": "#17348c",
+					"strokeWidth": 0
+				},
+				"logoMark": {
+					"type": "rectangle",
+					"top": 40,
+					"left": 32,
+					"width": 56,
+					"height": 56,
+					"fill": "#2451d6",
+					"stroke": "#2451d6",
+					"strokeWidth": 0,
+					"borderRadius": 14
+				},
+				"logoLetter": {
+					"type": "text",
+					"text": "K",
+					"top": 53,
+					"left": 52,
+					"width": 24,
+					"height": 28,
+					"fontSize": 24,
+					"fontWeight": "bold",
+					"stroke": "#ffffff"
+				},
+				"sidebarTitle": {
+					"type": "text",
+					"text": "Kestrel Health",
+					"top": 112,
+					"left": 32,
+					"width": 220,
+					"height": 26,
+					"fontSize": 20,
+					"fontWeight": "bold",
+					"stroke": "#ffffff"
+				},
+				"sidebarSubtitle": {
+					"type": "text",
+					"text": "AI-powered appointment booking",
+					"top": 140,
+					"left": 32,
+					"width": 220,
+					"height": 32,
+					"fontSize": 12,
+					"stroke": "#eef2fb"
+				},
+				"sidebarDivider": {
+					"type": "rectangle",
+					"top": 184,
+					"left": 32,
+					"width": 216,
+					"height": 1,
+					"fill": "#2451d6",
+					"stroke": "#2451d6",
+					"strokeWidth": 0
+				},
+				"bullet1": {
+					"type": "text",
+					"text": "•  AI tool-calling chat",
+					"top": 204,
+					"left": 32,
+					"width": 216,
+					"height": 20,
+					"fontSize": 12,
+					"stroke": "#ffffff"
+				},
+				"bullet2": {
+					"type": "text",
+					"text": "•  Live ORDA availability",
+					"top": 230,
+					"left": 32,
+					"width": 216,
+					"height": 20,
+					"fontSize": 12,
+					"stroke": "#ffffff"
+				},
+				"bullet3": {
+					"type": "text",
+					"text": "•  Native staff admin",
+					"top": 256,
+					"left": 32,
+					"width": 216,
+					"height": 20,
+					"fontSize": 12,
+					"stroke": "#ffffff"
+				},
+				"sidebarFooter": {
+					"type": "text",
+					"text": "Demo project",
+					"top": 496,
+					"left": 32,
+					"width": 216,
+					"height": 18,
+					"fontSize": 11,
+					"stroke": "#c7d3f0"
+				},
+				"eyebrow": {
+					"type": "text",
+					"text": "4D TECH NOTE",
+					"top": 36,
+					"left": 312,
+					"width": 300,
+					"height": 16,
+					"fontSize": 11,
+					"fontWeight": "bold",
+					"stroke": "#2451d6"
+				},
+				"heading": {
+					"type": "text",
+					"text": "AI-Powered Appointment Booking",
+					"top": 56,
+					"left": 312,
+					"width": 460,
+					"height": 30,
+					"fontSize": 22,
+					"fontWeight": "bold",
+					"stroke": "#12181f"
+				},
+				"description": {
+					"type": "text",
+					"text": "A 4D AIKit tool-calling assistant for a fictional clinic. The model reads the conversation, picks the right 4D method, and 4D executes real ORDA queries — no keyword matching, no manual routing.",
+					"top": 96,
+					"left": 312,
+					"width": 460,
+					"height": 64,
+					"fontSize": 13,
+					"stroke": "#5b6470"
+				},
+				"card1Bg": {
+					"type": "rectangle",
+					"top": 176,
+					"left": 312,
+					"width": 145,
+					"height": 64,
+					"fill": "#f5f6f8",
+					"stroke": "#e2e5ea",
+					"borderRadius": 8
+				},
+				"card1Label": {
+					"type": "text",
+					"text": "VERSION",
+					"top": 188,
+					"left": 324,
+					"width": 121,
+					"height": 14,
+					"fontSize": 10,
+					"fontWeight": "bold",
+					"stroke": "#5b6470"
+				},
+				"card1Value": {
+					"type": "text",
+					"text": "4D 21",
+					"top": 206,
+					"left": 324,
+					"width": 121,
+					"height": 22,
+					"fontSize": 15,
+					"fontWeight": "bold",
+					"stroke": "#12181f"
+				},
+				"card2Bg": {
+					"type": "rectangle",
+					"top": 176,
+					"left": 471,
+					"width": 145,
+					"height": 64,
+					"fill": "#f5f6f8",
+					"stroke": "#e2e5ea",
+					"borderRadius": 8
+				},
+				"card2Label": {
+					"type": "text",
+					"text": "STACK",
+					"top": 188,
+					"left": 483,
+					"width": 121,
+					"height": 14,
+					"fontSize": 10,
+					"fontWeight": "bold",
+					"stroke": "#5b6470"
+				},
+				"card2Value": {
+					"type": "text",
+					"text": "AIKit · ORDA",
+					"top": 206,
+					"left": 483,
+					"width": 121,
+					"height": 22,
+					"fontSize": 15,
+					"fontWeight": "bold",
+					"stroke": "#12181f"
+				},
+				"card3Bg": {
+					"type": "rectangle",
+					"top": 176,
+					"left": 630,
+					"width": 145,
+					"height": 64,
+					"fill": "#f5f6f8",
+					"stroke": "#e2e5ea",
+					"borderRadius": 8
+				},
+				"card3Label": {
+					"type": "text",
+					"text": "TOOLS",
+					"top": 188,
+					"left": 642,
+					"width": 121,
+					"height": 14,
+					"fontSize": 10,
+					"fontWeight": "bold",
+					"stroke": "#5b6470"
+				},
+				"card3Value": {
+					"type": "text",
+					"text": "12 OpenAI tools",
+					"top": 206,
+					"left": 642,
+					"width": 121,
+					"height": 22,
+					"fontSize": 13,
+					"fontWeight": "bold",
+					"stroke": "#12181f"
+				},
+				"summaryBar": {
+					"type": "rectangle",
+					"top": 256,
+					"left": 312,
+					"width": 464,
+					"height": 40,
+					"fill": "#eef2fb",
+					"stroke": "#eef2fb",
+					"strokeWidth": 0,
+					"borderRadius": 8
+				},
+				"summaryText": {
+					"type": "text",
+					"text": "Same business logic, chat or clinic staff — AI and Admin never disagree.",
+					"top": 268,
+					"left": 324,
+					"width": 440,
+					"height": 24,
+					"fontSize": 12,
+					"fontWeight": "bold",
+					"stroke": "#17348c"
+				},
+				"btnLaunchDemo": {
+					"type": "button",
+					"text": "Open Admin →",
+					"top": 356,
+					"left": 312,
+					"width": 180,
+					"height": 40,
+					"fill": "#2451d6",
+					"stroke": "#2451d6",
+					"fontSize": 14,
+					"fontWeight": "bold",
+					"borderRadius": 8,
+					"events": [
+						"onClick"
+					],
+					"method": "ObjectMethods/btnLaunchDemo.4dm"
+				},
+				"footerRight": {
+					"type": "text",
+					"text": "© 2026 · demoAPT",
+					"top": 500,
+					"left": 312,
+					"width": 300,
+					"height": 16,
+					"fontSize": 10,
+					"stroke": "#5b6470"
+				}
+			}
+		}
+	],
+	"method": "method.4dm",
+	"editor": {
+		"activeView": "View 1",
+		"defaultView": "View 1",
+		"views": {
+			"View 1": {}
+		}
+	},
+	"geometryStamp": 69,
+	"menuBar": "Barre #1"
+}
