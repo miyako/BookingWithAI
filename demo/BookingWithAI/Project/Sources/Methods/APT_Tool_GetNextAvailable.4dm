@@ -49,7 +49,7 @@ Try
 			$result.staffID:=$staff.staffID
 			$result.staffName:=$staff.fullName
 			$result.date:=String:C10($searchDate; "yyyy-MM-dd")
-			$result.time:=String:C10($freeSlots[0]; "HH:mm")
+			$result.time:=String:C10(Time:C179($freeSlots[0]); "HH:mm")
 		End if 
 		
 		$searchDate:=$searchDate+1

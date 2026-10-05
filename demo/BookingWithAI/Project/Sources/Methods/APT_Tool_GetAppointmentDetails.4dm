@@ -28,7 +28,7 @@ Try
 	$result.appointmentID:=$appt.appointmentID
 	$result.confirmationCode:=$appt.confirmationCode
 	$result.date:=String:C10($appt.date; "yyyy-MM-dd")
-	$result.time:=String:C10($appt.time; "HH:mm")
+	$result.time:=String:C10(Time:C179($appt.time); "HH:mm")
 	$result.duration:=$appt.duration
 	$result.reason:=$appt.reason
 	$result.status:=$appt.status

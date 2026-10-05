@@ -37,7 +37,7 @@ Try
 		$result.appointments.push({\
 			confirmationCode: $appt.confirmationCode; \
 			date: String:C10($appt.date; "yyyy-MM-dd"); \
-			time: String:C10($appt.time; "HH:mm"); \
+			time: String:C10(Time:C179($appt.time); "HH:mm"); \
 			staffName: $appt.staffName; \
 			status: $appt.status; \
 			reason: $appt.reason\

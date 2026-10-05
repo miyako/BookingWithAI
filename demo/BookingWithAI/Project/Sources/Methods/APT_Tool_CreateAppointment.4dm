@@ -68,7 +68,7 @@ Try
 		$result.appointmentID:=$appt.appointmentID
 		$result.confirmationCode:=$appt.confirmationCode
 		$result.date:=String:C10($appt.date; "yyyy-MM-dd")
-		$result.time:=String:C10($appt.time; "HH:mm")
+		$result.time:=String:C10(Time:C179($appt.time); "HH:mm")
 		$result.staffName:=$staff.fullName
 	Else 
 		$result.error:="Failed to create appointment: "+$status.statusText
