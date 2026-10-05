@@ -1,0 +1,51 @@
+Kestrel Health
+Back to site
+• Appointment Assistant • Online
+% Tool Activity 7
+Hide
+My name is Sophie Laurent, email
+ARGUMENTS
+sophie.laurent@example.com
+7:49 AM
+You
+"clientID":
+"1508BCAEA49B4CEAB4880AD4F4D01231,
+"staffID":
+You're all set, Sophie. I've booked you with
+"AC34A2A4A6174147AAB1AEEF3BB77A24",
+atea: 2026-08-07°,
+Dr. Jean Martin on Friday, 2026-08-07 at
+"time": "11:30"
+11:30. Your confirmation code is
+APT-6BBD55 •
+RESULT
+Would you like to add a brief reason for
+the visit or make any changes?
+"success": true,
+"appointmentID":
+KH
+"BeF3246E52E0489081FBFB10280B2E75",
+7:49 AM
+"confirmationCode": "APT-6BBD55",
+datea: 2026-08-07',
+Actually please cancel that appointment."
+"time': "HH: mm",
+"staffName": "Jean Martin"
+You
+7:52 AM
+Done—your appointment APT-6BBD55
+cancelAppointment
+7:53 AM
+with Dr. Jean Martin on 2026-08-07 at
+ARGUMENTS
+11:30 has been canceled.
+"appointmentID":
+Would you like to book a different time or
+"BOF3246E52E0489081FBFB10280B2E75"
+provider?
+KH
+7:53 AM
+RESULT
+"success": true,
+"confirmationCode": "APT-6BBD55"
+Ask about booking, rescheduling, or your appointme

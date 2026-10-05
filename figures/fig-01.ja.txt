@@ -1,0 +1,38 @@
+demoAPT — システム構成とリクエストの流れ
+訪問者のブラウザー
+webchat.html — 公開Webページ、ネイティブ4Dクライアント不要
+POST /rest/$catalog/chat
+{conversationID, message}
+4D Webサーバー + ORDA REST
+DataStore.4dm — 公開関数 chat($body)
+転送
+APT_WebChat_Handle
+Conversationレコードを読み込みまたは作成
+システムプロンプトを更新・訪問者のメッセージを追加
+APT_WebChat_RunTurn — ループ（訪問者の1ターンにつき最大6ラウンド）
+ブラウザーが応答を表示・<slots>をボタンに変換
+chat.completions.create(
+OpenAI API
+messages, tools; {stream: False})
+GPT-5 (LLM)
+ツールの結果を追加し、モデルを再度呼び出し
+finish_reason
+最終テキスト
+tool_calls
+APT_Tool_Dispatch
+ツール名で振り分け
+最終応答の準備完了
+ツール呼び出しなし — ループ終了
+APT_Tool_* メソッド
+ツールごとに1つの4Dメソッド
+ORDAテーブル
+Staff · Client · Appointment
+Availability · Conversation
+同じAPT_Tool_*メソッド — AIなし、HTTPリクエストなし
+管理フォーム（ネイティブ）
+クリニックのスタッフ — 検索、絞り込み、
+手作業でキャンセル
+保存して応答
+Conversation.messagesを更新・{reply, conversationID}
+HTTP応答で返却
+demoAPT · 4D AIKit + OpenAIツール呼び出し — はやぶさクリニック

@@ -21,12 +21,17 @@ DEFAULTS = {
     "header_y": 0,                  # ignore lines whose top is above this (pt)
     "footer_y": 710,                # ignore lines whose top is below this (pt)
     "heading": {"fonts": ["Bold", "Medium"], "min_size": 12, "levels_by_x": {}, "default_level": 2},
+    # indent: x offset that makes a plain line a code continuation; null = only colour/font mark code
     "code": {"colors": [], "fonts": ["Mono", "Courier", "Menlo", "Consolas", "Monaco"], "indent": 5},
-    "bullets": {"fonts": ["SymbolMT", "Wingdings-Regular"], "strip_fonts": ["ArialMT"]},
-    "caption": {"italic": True, "min_x": 0},
+    "bullets": {"fonts": ["SymbolMT", "Wingdings-Regular"], "strip_fonts": ["ArialMT"], "glyphs": ["•", "◦", "▪"]},
+    "caption": {"italic": True, "min_x": 0, "max_size": None},  # max_size: captions are at most this size
+    "quote": {"italic": False},     # true: fully italic non-caption lines become > blockquotes (notes, quotes)
+    "figure": {"min_width_pt": 0},  # smaller images (inline icons) are ignored
     "table": {"size": None},        # font size used only by table cells, or null
     "paragraph": {"gap": 3, "short_line_x1": 470},
-    "ocr": {"psm": 11, "min_conf": 30, "noise": r"^[E ]+$"},
+    # engine: tesseract | vision (macOS Apple Vision, much better on diagrams) | auto (vision if available)
+    # scale: upscale factor before Tesseract OCR
+    "ocr": {"engine": "tesseract", "psm": 11, "min_conf": 30, "noise": r"^[E ]+$", "scale": 1},
     "figure_fonts": {},             # {"light"|"regular"|"bold": [path or path#index, ...]}
     "demo_dir": "demo",
 }

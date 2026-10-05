@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><preferences stamp="8">
+	<com.4d>
+		<web>
+			<standalone_server>
+				<options>
+					<cors enabled="true">
+						<domain methods="GET;HEAD;POST;PUT" name="*"/>
+					</cors>
+				</options>
+				<rest launch_at_startup="true"/>
+				<configuration publish_at_startup="true"/>
+			</standalone_server>
+		</web>
+		<general startup_environnement="1"/>
+		<interface>
+			<user splash_screen="false"/>
+		</interface>
+	</com.4d>
+</preferences>

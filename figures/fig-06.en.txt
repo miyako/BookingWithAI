@@ -1,0 +1,52 @@
+Kestrel Health
+Back to site
+• Appointment Assistant • Online
+Jean Martin.
+Tool Activity 6
+Hide
+You
+7:42 AM
+\ findClient
+7:49 AM
+Great—11:30 on Friday, Aug 7 with Dr.
+ARGUMENTS
+Jean Martin is open.
+"name": "Sophie Laurent",
+Please share your full name and phone or
+"email":
+email so I can find your record and finalize
+"sophie.laurent@example.com"
+the booking. (Optional: a brief reason for
+the visit.)
+RESULT
+KH
+7:42 AM
+"found": false,
+"client": null
+My name is Sophie Laurent, email
+sophie.laurent@example.com
+createClient
+7:49 AM
+7:49 AM
+You
+ARGUMENTS
+You're all set, Sophie. I've booked you with
+"firstName": "Sophie",
+Dr. Jean Martin on Friday, 2026-08-07 at
+"lastName": "Laurent",
+"email":
+11:30. Your confirmation code is
+"sophie.laurent@example.com"
+APT-6BBD55 •
+Would you like to add a brief reason for
+RESULT
+the visit or make any changes?
+success: true,
+KH
+7:49 AM
+"client": {
+"clientID":
+*1508BCAEA49B4CEAB4880AD4F4D01231",
+"firstName": "Sophie"
+Ask about booking, rescheduling, or your appointme
+"lastName": "Laurent"

@@ -1,0 +1,596 @@
+{
+	"$4d": {
+		"version": "1",
+		"kind": "form"
+	},
+	"windowSizingX": "variable",
+	"windowSizingY": "variable",
+	"windowMinWidth": 900,
+	"windowMinHeight": 620,
+	"windowMaxWidth": 32767,
+	"windowMaxHeight": 32767,
+	"rightMargin": 20,
+	"bottomMargin": 20,
+	"events": [
+		"onLoad",
+		"onPageChange",
+		"onValidate",
+		"onClick",
+		"onDoubleClick",
+		"onOutsideCall",
+		"onBeginDragOver",
+		"onDragOver",
+		"onDrop",
+		"onAfterKeystroke",
+		"onMenuSelect",
+		"onPluginArea",
+		"onAfterEdit",
+		"onTimer",
+		"onBoundVariableChange"
+	],
+	"windowTitle": ":xliff:Admin_WindowTitle",
+	"destination": "detailScreen",
+	"pages": [
+		{
+			"objects": {}
+		},
+		{
+			"objects": {
+				"title": {
+					"type": "text",
+					"text": ":xliff:Admin_Title",
+					"top": 18,
+					"left": 24,
+					"width": 400,
+					"height": 26,
+					"fontSize": 20,
+					"fontWeight": "bold",
+					"stroke": "#12181f"
+				},
+				"subtitle": {
+					"type": "text",
+					"text": ":xliff:Admin_Subtitle",
+					"top": 46,
+					"left": 24,
+					"width": 500,
+					"height": 16,
+					"fontSize": 12,
+					"stroke": "#5b6470"
+				},
+				"toolbarRule": {
+					"type": "rectangle",
+					"top": 74,
+					"left": 0,
+					"width": 965,
+					"height": 1,
+					"fill": "#e2e5ea",
+					"stroke": "#e2e5ea",
+					"strokeWidth": 0,
+					"sizingX": "grow"
+				},
+				"searchField": {
+					"type": "input",
+					"top": 90,
+					"left": 24,
+					"width": 328,
+					"height": 32,
+					"dataSource": "Form.searchQuery",
+					"placeholder": ":xliff:Admin_SearchPlaceholder",
+					"fill": "#f5f6f8",
+					"borderStyle": "none",
+					"borderRadius": 8,
+					"multiline": "no"
+				},
+				"btnSearch": {
+					"type": "button",
+					"text": ":xliff:Admin_BtnSearch",
+					"top": 90,
+					"left": 372,
+					"width": 76,
+					"height": 32,
+					"fill": "#2451d6",
+					"stroke": "#2451D6",
+					"fontSize": 13,
+					"fontWeight": "bold",
+					"borderRadius": 8,
+					"events": [
+						"onClick"
+					],
+					"method": "ObjectMethods/btnSearch.4dm"
+				},
+				"btnFilterUpcoming": {
+					"type": "button",
+					"text": ":xliff:Admin_FilterUpcoming",
+					"top": 90,
+					"left": 525,
+					"width": 96,
+					"height": 32,
+					"fill": "#f5f6f8",
+					"stroke": "#008000",
+					"fontSize": 12,
+					"fontWeight": "bold",
+					"borderRadius": 8,
+					"events": [
+						"onClick"
+					],
+					"method": "ObjectMethods/btnFilterUpcoming.4dm"
+				},
+				"btnFilterPast": {
+					"type": "button",
+					"text": ":xliff:Admin_FilterPast",
+					"top": 90,
+					"left": 628,
+					"width": 76,
+					"height": 32,
+					"fill": "#f5f6f8",
+					"stroke": "#ff6347",
+					"fontSize": 12,
+					"fontWeight": "bold",
+					"borderRadius": 8,
+					"events": [
+						"onClick"
+					],
+					"method": "ObjectMethods/btnFilterPast.4dm"
+				},
+				"btnFilterAll": {
+					"type": "button",
+					"text": ":xliff:Admin_FilterAll",
+					"top": 90,
+					"left": 452,
+					"width": 66,
+					"height": 32,
+					"fill": "#f5f6f8",
+					"stroke": "#0000CD",
+					"fontSize": 12,
+					"fontWeight": "bold",
+					"borderRadius": 8,
+					"events": [
+						"onClick"
+					],
+					"method": "ObjectMethods/btnFilterAll.4dm"
+				},
+				"btnFilterCancelled": {
+					"type": "button",
+					"text": ":xliff:Admin_FilterCancelled",
+					"top": 90,
+					"left": 710,
+					"width": 96,
+					"height": 32,
+					"fill": "#f5f6f8",
+					"stroke": "#ff0000",
+					"fontSize": 12,
+					"fontWeight": "bold",
+					"borderRadius": 8,
+					"events": [
+						"onClick"
+					],
+					"method": "ObjectMethods/btnFilterCancelled.4dm"
+				},
+				"appointmentList": {
+					"type": "listbox",
+					"top": 138,
+					"left": 24,
+					"width": 576,
+					"height": 460,
+					"sizingX": "grow",
+					"sizingY": "grow",
+					"listboxType": "collection",
+					"dataSource": "Form.appointments",
+					"currentItemSource": "Form.currentAppointment",
+					"selectionMode": "single",
+					"stroke": "#e2e5ea",
+					"fill": "#ffffff",
+					"alternateFill": "#eef2fb",
+					"verticalAlign": "middle",
+					"resizingMode": "legacy",
+					"method": "ObjectMethods/appointmentList.4dm",
+					"events": [
+						"onSelectionChange"
+					],
+					"columns": [
+						{
+							"name": "Code",
+							"header": {
+								"text": ":xliff:Admin_Code",
+								"name": "Header1",
+								"stroke": "#696969"
+							},
+							"dataSource": "This:C1470.confirmationCode",
+							"width": 90,
+							"footer": {
+								"name": "Footer1"
+							},
+							"stroke": "#000000",
+							"horizontalPadding": 2,
+							"truncateMode": "none"
+						},
+						{
+							"name": "Date",
+							"header": {
+								"text": ":xliff:Admin_Date",
+								"name": "Header2",
+								"stroke": "#696969"
+							},
+							"dataSource": "This:C1470.date",
+							"width": 76,
+							"footer": {
+								"name": "Footer2"
+							},
+							"stroke": "#000000",
+							"horizontalPadding": 2,
+							"truncateMode": "none"
+						},
+						{
+							"name": "Time",
+							"header": {
+								"text": ":xliff:Admin_Time",
+								"name": "Header3",
+								"stroke": "#696969"
+							},
+							"dataSource": "This:C1470.time",
+							"width": 64,
+							"footer": {
+								"name": "Footer3"
+							},
+							"stroke": "#000000",
+							"horizontalPadding": 2,
+							"truncateMode": "none",
+							"dateFormat": "systemShort",
+							"timeFormat": "hh_mm",
+							"dataSourceTypeHint": "time",
+							"textAlign": "left"
+						},
+						{
+							"name": "Client",
+							"header": {
+								"text": ":xliff:Admin_Client",
+								"name": "Header4",
+								"stroke": "#696969"
+							},
+							"dataSource": "This:C1470.clientName",
+							"width": 120,
+							"footer": {
+								"name": "Footer4"
+							},
+							"stroke": "#000000",
+							"horizontalPadding": 2,
+							"truncateMode": "none"
+						},
+						{
+							"name": "Staff",
+							"header": {
+								"text": ":xliff:Admin_Staff",
+								"name": "Header5",
+								"stroke": "#696969"
+							},
+							"dataSource": "This:C1470.staffName",
+							"width": 120,
+							"footer": {
+								"name": "Footer5"
+							},
+							"stroke": "#000000",
+							"horizontalPadding": 2,
+							"truncateMode": "none"
+						},
+						{
+							"name": "Status",
+							"header": {
+								"text": ":xliff:Admin_Status",
+								"name": "Header6",
+								"stroke": "#696969"
+							},
+							"dataSource": "This:C1470.statusLabel",
+							"width": 85,
+							"footer": {
+								"name": "Footer6"
+							},
+							"stroke": "#000000",
+							"horizontalPadding": 2,
+							"truncateMode": "none"
+						}
+					]
+				},
+				"detailPanel": {
+					"type": "rectangle",
+					"top": 138,
+					"left": 620,
+					"width": 340,
+					"height": 460,
+					"fill": "#ffffff",
+					"stroke": "#e2e5ea",
+					"borderRadius": 12,
+					"sizingX": "move",
+					"sizingY": "grow"
+				},
+				"detailHeader": {
+					"type": "rectangle",
+					"top": 138,
+					"left": 620,
+					"width": 340,
+					"height": 48,
+					"fill": "#2451d6",
+					"stroke": "#2451d6",
+					"borderRadius": 12,
+					"sizingX": "move"
+				},
+				"detailHeaderTitle": {
+					"type": "text",
+					"text": ":xliff:Admin_DetailTitle",
+					"top": 154,
+					"left": 640,
+					"width": 300,
+					"height": 20,
+					"fontSize": 14,
+					"fontWeight": "bold",
+					"stroke": "#f8f9fb",
+					"sizingX": "move"
+				},
+				"lblCode": {
+					"type": "text",
+					"text": ":xliff:Admin_Code",
+					"top": 206,
+					"left": 640,
+					"width": 120,
+					"height": 18,
+					"fontSize": 13,
+					"stroke": "#5b6470",
+					"sizingX": "move"
+				},
+				"txtCode": {
+					"type": "input",
+					"top": 204,
+					"left": 780,
+					"width": 160,
+					"height": 20,
+					"dataSource": "Form.currentAppointment.confirmationCode",
+					"enterable": false,
+					"focusable": false,
+					"fill": "transparent",
+					"borderStyle": "none",
+					"textAlign": "right",
+					"fontSize": 13,
+					"stroke": "#12181f",
+					"sizingX": "move"
+				},
+				"sepCode": {
+					"type": "rectangle",
+					"top": 234,
+					"left": 640,
+					"width": 300,
+					"height": 1,
+					"fill": "#e2e5ea",
+					"stroke": "#e2e5ea",
+					"strokeWidth": 0,
+					"sizingX": "move"
+				},
+				"lblWhen": {
+					"type": "text",
+					"text": ":xliff:Admin_DateTime",
+					"top": 246,
+					"left": 640,
+					"width": 120,
+					"height": 18,
+					"fontSize": 13,
+					"stroke": "#5b6470",
+					"sizingX": "move"
+				},
+				"txtDate": {
+					"type": "input",
+					"top": 244,
+					"left": 720,
+					"width": 100,
+					"height": 20,
+					"dataSource": "Form.currentAppointment.date",
+					"enterable": false,
+					"focusable": false,
+					"fill": "transparent",
+					"borderStyle": "none",
+					"textAlign": "right",
+					"fontSize": 13,
+					"stroke": "#12181f",
+					"sizingX": "move"
+				},
+				"txtTime": {
+					"type": "input",
+					"top": 244,
+					"left": 820,
+					"width": 120,
+					"height": 20,
+					"dataSource": "Form.currentAppointment.time",
+					"enterable": false,
+					"focusable": false,
+					"fill": "transparent",
+					"borderStyle": "none",
+					"textAlign": "right",
+					"fontSize": 13,
+					"stroke": "#12181f",
+					"sizingX": "move",
+					"dataSourceTypeHint": "time",
+					"timeFormat": "hh_mm"
+				},
+				"sepWhen": {
+					"type": "rectangle",
+					"top": 274,
+					"left": 640,
+					"width": 300,
+					"height": 1,
+					"fill": "#e2e5ea",
+					"stroke": "#e2e5ea",
+					"strokeWidth": 0,
+					"sizingX": "move"
+				},
+				"lblClient": {
+					"type": "text",
+					"text": ":xliff:Admin_Client",
+					"top": 286,
+					"left": 640,
+					"width": 120,
+					"height": 18,
+					"fontSize": 13,
+					"stroke": "#5b6470",
+					"sizingX": "move"
+				},
+				"txtClient": {
+					"type": "input",
+					"top": 284,
+					"left": 780,
+					"width": 160,
+					"height": 20,
+					"dataSource": "Form.currentAppointment.clientName",
+					"enterable": false,
+					"focusable": false,
+					"fill": "transparent",
+					"borderStyle": "none",
+					"textAlign": "right",
+					"fontSize": 13,
+					"stroke": "#12181f",
+					"sizingX": "move"
+				},
+				"sepClient": {
+					"type": "rectangle",
+					"top": 314,
+					"left": 640,
+					"width": 300,
+					"height": 1,
+					"fill": "#e2e5ea",
+					"stroke": "#e2e5ea",
+					"strokeWidth": 0,
+					"sizingX": "move"
+				},
+				"lblStaff": {
+					"type": "text",
+					"text": ":xliff:Admin_Staff",
+					"top": 326,
+					"left": 640,
+					"width": 120,
+					"height": 18,
+					"fontSize": 13,
+					"stroke": "#5b6470",
+					"sizingX": "move"
+				},
+				"txtStaff": {
+					"type": "input",
+					"top": 324,
+					"left": 780,
+					"width": 160,
+					"height": 20,
+					"dataSource": "Form.currentAppointment.staffName",
+					"enterable": false,
+					"focusable": false,
+					"fill": "transparent",
+					"borderStyle": "none",
+					"textAlign": "right",
+					"fontSize": 13,
+					"stroke": "#12181f",
+					"sizingX": "move"
+				},
+				"sepStaff": {
+					"type": "rectangle",
+					"top": 354,
+					"left": 640,
+					"width": 300,
+					"height": 1,
+					"fill": "#e2e5ea",
+					"stroke": "#e2e5ea",
+					"strokeWidth": 0,
+					"sizingX": "move"
+				},
+				"lblStatus": {
+					"type": "text",
+					"text": ":xliff:Admin_Status",
+					"top": 366,
+					"left": 640,
+					"width": 120,
+					"height": 18,
+					"fontSize": 13,
+					"stroke": "#5b6470",
+					"sizingX": "move"
+				},
+				"txtStatus": {
+					"type": "input",
+					"top": 364,
+					"left": 780,
+					"width": 160,
+					"height": 20,
+					"dataSource": "Form.currentAppointment.statusLabel",
+					"enterable": false,
+					"focusable": false,
+					"fill": "transparent",
+					"borderStyle": "none",
+					"textAlign": "right",
+					"fontSize": 13,
+					"fontWeight": "bold",
+					"stroke": "#1f9d6b",
+					"sizingX": "move"
+				},
+				"sepStatus": {
+					"type": "rectangle",
+					"top": 394,
+					"left": 640,
+					"width": 300,
+					"height": 1,
+					"fill": "#e2e5ea",
+					"stroke": "#e2e5ea",
+					"strokeWidth": 0,
+					"sizingX": "move"
+				},
+				"lblReason": {
+					"type": "text",
+					"text": ":xliff:Admin_Reason",
+					"top": 406,
+					"left": 640,
+					"width": 300,
+					"height": 18,
+					"fontSize": 13,
+					"stroke": "#5b6470",
+					"sizingX": "move"
+				},
+				"txtReason": {
+					"type": "input",
+					"top": 426,
+					"left": 640,
+					"width": 300,
+					"height": 60,
+					"dataSource": "Form.currentAppointment.reason",
+					"enterable": false,
+					"focusable": false,
+					"fill": "transparent",
+					"borderStyle": "none",
+					"fontSize": 13,
+					"stroke": "#12181f",
+					"multiline": "yes",
+					"sizingX": "move"
+				},
+				"btnCancelSelected": {
+					"type": "button",
+					"text": ":xliff:Admin_BtnCancel",
+					"top": 538,
+					"left": 640,
+					"width": 300,
+					"height": 36,
+					"fill": "#d93b3b",
+					"stroke": "#d93b3b",
+					"fontSize": 13,
+					"fontWeight": "bold",
+					"borderRadius": 8,
+					"events": [
+						"onClick"
+					],
+					"method": "ObjectMethods/btnCancelSelected.4dm",
+					"sizingX": "move",
+					"sizingY": "move"
+				}
+			}
+		}
+	],
+	"method": "method.4dm",
+	"editor": {
+		"activeView": "View 1",
+		"defaultView": "View 1",
+		"views": {
+			"View 1": {}
+		}
+	},
+	"geometryStamp": 64,
+	"menuBar": "Barre #1"
+}

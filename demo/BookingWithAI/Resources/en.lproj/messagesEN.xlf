@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+	<file datatype="plaintext" original="messages" source-language="en" target-language="en">
+		<body>
+			<trans-unit id="Status_confirmed" resname="Status_confirmed">
+				<source>Confirmed</source>
+				<target>Confirmed</target>
+			</trans-unit>
+			<trans-unit id="Status_cancelled" resname="Status_cancelled">
+				<source>Cancelled</source>
+				<target>Cancelled</target>
+			</trans-unit>
+			<trans-unit id="AlertSelectAppointment" resname="AlertSelectAppointment">
+				<source>Select an appointment first.</source>
+				<target>Select an appointment first.</target>
+			</trans-unit>
+			<trans-unit id="AlertMissingAIProvider" resname="AlertMissingAIProvider">
+				<source>Missing OpenAI API key. Copy Project/Sources/AIProviders.example.json to AIProviders.json in the same folder and set your API key, or add an OpenAI provider in the AI page of the 4D Settings.</source>
+				<target>Missing OpenAI API key. Copy Project/Sources/AIProviders.example.json to AIProviders.json in the same folder and set your API key, or add an OpenAI provider in the AI page of the 4D Settings.</target>
+			</trans-unit>
+			<trans-unit id="ConfirmSeed" resname="ConfirmSeed">
+				<source>This will delete all existing data and reload sample data. Continue?</source>
+				<target>This will delete all existing data and reload sample data. Continue?</target>
+			</trans-unit>
+			<trans-unit id="AlertSeedComplete" resname="AlertSeedComplete">
+				<source>Seed complete! Staff: {staff} | Clients: {clients} | Appointments: {appointments}</source>
+				<target>Seed complete! Staff: {staff} | Clients: {clients} | Appointments: {appointments}</target>
+			</trans-unit>
+			<trans-unit id="WebChat_MessageRequired" resname="WebChat_MessageRequired">
+				<source>Message is required.</source>
+				<target>Message is required.</target>
+			</trans-unit>
+			<trans-unit id="WebChat_AIRequestFailed" resname="WebChat_AIRequestFailed">
+				<source>The AI request failed.</source>
+				<target>The AI request failed.</target>
+			</trans-unit>
+			<trans-unit id="WebChat_AIRequestFailedDetail" resname="WebChat_AIRequestFailedDetail">
+				<source>The AI request failed: {message}</source>
+				<target>The AI request failed: {message}</target>
+			</trans-unit>
+			<trans-unit id="WebChat_TooManySteps" resname="WebChat_TooManySteps">
+				<source>The assistant took too many steps to answer - please try rephrasing.</source>
+				<target>The assistant took too many steps to answer - please try rephrasing.</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

@@ -1,0 +1,48 @@
+Kestrel Health
+Back to site
+• Appointment Assistant • Online
+\ Tool Activity 4
+Hide
+Ask me to book, reschedule, cancel, or look up an appointment.
+• getStaffList
+4:46 PM
+Can lsee Dr. Martin this week?
+ARGUMENTS
+You
+4:46 PM
+RESULT
+Here are some open times with Dr. Jean
+Martin this week:
+"staff": [
+"staffID":
+Mon, Jul 27 - 09:00
+"AC34A2A4A6174147AAB1AEEF3BB77A24",
+"firstName": "Jean",
+"lastName": "Martin",
+Tue, Jul 28 • 09:00
+"specialty": "Cardiology",
+"slotDuration": 30
+Wed, Jul 29 • 09:00
+"staffID":
+Fri, Jul 31 • 09:00
+Thu, Jul 30 • 09:00
+89000789C2174E7C950BD8B07C9AE7EA",
+"firstName": "Claire"
+"lastName": "Bernard",
+Mon, Jul 27 • 09:30
+"specialty": "General
+Medicine",
+KH
+"slotDuration": 20
+4:46 PM
+Book me for Tue, Jul 28 at 09:00 with Dr.
+"staffID":
+"78A3DCBD5EC744F3A4F1C9705EF7F9BC",
+Jean Martin.
+"firstName": "Paul",
+"lastName": "Dupuis"
+You
+4:51 PM
+"specialty": "Support",
+"slotDuration": 15
+Ask about booking, rescheduling, or your appointme

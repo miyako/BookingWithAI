@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>はやぶさクリニック — ご予約</title>
+<style>
+	:root {
+		--ink: #12181f;
+		--cobalt: #2451d6;
+		--cobalt-deep: #17348c;
+		--cobalt-tint: #eef2fb;
+		--mist: #f5f6f8;
+		--canvas: #e7eaf0;
+		--line: #e2e5ea;
+		--slate: #5b6470;
+		--mint: #1f9d6b;
+		--mint-tint: #dbf0e5;
+		--rust: #d93b3b;
+		--rust-tint: #fadede;
+		--card-bg: #ffffff;
+	}
+	* { box-sizing: border-box; }
+	html, body {
+		margin: 0;
+		height: 100%;
+		font-family: -apple-system, "Segoe UI", "Helvetica Neue", Helvetica, Arial, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", Meiryo, sans-serif;
+		color: var(--ink);
+	}
+	body {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background: linear-gradient(160deg, var(--canvas) 0%, var(--mist) 100%);
+		padding: 28px 16px;
+	}
+
+	.appShell {
+		width: 100%;
+		max-width: 760px;
+		height: min(860px, 100%);
+		display: flex;
+		flex-direction: column;
+		background: var(--card-bg);
+		border-radius: 20px;
+		box-shadow: 0 1px 2px rgba(18, 24, 31, 0.04), 0 24px 48px -20px rgba(18, 24, 31, 0.22);
+		overflow: hidden;
+	}
+
+	header {
+		flex: none;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		height: 68px;
+		padding: 0 22px;
+		background: #ffffff;
+		border-bottom: 1px solid var(--line);
+	}
+	.brand { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 15.5px; }
+	.mark {
+		width: 32px; height: 32px; border-radius: 9px; flex: none;
+		background: linear-gradient(155deg, var(--cobalt) 0%, var(--cobalt-deep) 100%);
+		position: relative;
+		box-shadow: 0 4px 10px -4px rgba(36, 81, 214, 0.65);
+	}
+	.mark::before, .mark::after { content: ""; position: absolute; background: #f7f9ff; width: 13px; height: 3px; border-radius: 2px; top: 14px; }
+	.mark::before { left: 6px; transform: rotate(-28deg); }
+	.mark::after { left: 13px; transform: rotate(28deg); }
+	.brand .brandText { display: flex; flex-direction: column; gap: 2px; }
+	.brand .status { display: flex; align-items: center; gap: 5px; font-weight: 500; font-size: 11.5px; color: var(--slate); }
+	.dot { width: 6px; height: 6px; border-radius: 50%; background: var(--mint); flex: none; box-shadow: 0 0 0 2px var(--mint-tint); }
+	.backLink {
+		font-size: 13px;
+		font-weight: 600;
+		color: var(--slate);
+		text-decoration: none;
+		padding: 7px 12px;
+		border-radius: 8px;
+	}
+	.backLink:hover { color: var(--ink); background: var(--mist); }
+
+	main { flex: 1; overflow: hidden; display: flex; justify-content: center; background: var(--mist); }
+	.chatCol { flex: 1; min-width: 0; display: flex; flex-direction: column; min-height: 0; }
+
+	/* ---- Tool Activity panel (demo aid: shows each tool call the model made) ---- */
+	.tool-panel {
+		width: 300px;
+		flex: none;
+		display: flex;
+		flex-direction: column;
+		background: var(--card-bg);
+		border-left: 1px solid var(--line);
+		overflow: hidden;
+		transition: width 0.18s ease;
+	}
+	.tool-panel.collapsed {
+		width: 52px;
+	}
+	.tool-panel.collapsed .tool-panel-body {
+		display: none;
+	}
+	.tool-panel.collapsed .tool-panel-header {
+		justify-content: center;
+		padding: 10px 4px;
+	}
+	.tool-panel.collapsed .tool-panel-label {
+		display: none;
+	}
+	.tool-panel-header {
+		flex: none;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 10px 14px;
+		font-size: 13px;
+		font-weight: 700;
+		background: var(--mist);
+		border-bottom: 1px solid var(--line);
+	}
+	.tool-count {
+		display: inline-block;
+		background: var(--cobalt);
+		color: #fff;
+		font-size: 11px;
+		font-weight: 700;
+		border-radius: 999px;
+		padding: 1px 7px;
+		margin-left: 6px;
+	}
+	.tool-toggle-btn {
+		font-family: inherit;
+		font-size: 12px;
+		font-weight: 600;
+		color: var(--cobalt);
+		background: none;
+		border: none;
+		cursor: pointer;
+		padding: 2px 4px;
+	}
+	.tool-panel-body {
+		flex: 1;
+		overflow-y: auto;
+		padding: 10px;
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+	.tool-empty { font-size: 12px; color: var(--slate); padding: 6px 4px; }
+	.tool-entry {
+		border: 1px solid var(--line);
+		border-radius: 8px;
+		padding: 8px 10px;
+		background: var(--card-bg);
+		transition: background 0.6s ease;
+	}
+	.tool-entry.new { background: #fff4d6; }
+	.tool-entry-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+	.tool-name { font-size: 12.5px; font-weight: 700; color: var(--cobalt-deep); }
+	.tool-time { font-size: 10.5px; color: var(--slate); }
+	.tool-entry-label {
+		font-size: 10.5px; font-weight: 700; text-transform: uppercase;
+		letter-spacing: 0.03em; color: var(--slate); margin: 6px 0 2px;
+	}
+	.tool-json {
+		margin: 0;
+		font-family: "SF Mono", Consolas, "Courier New", monospace;
+		font-size: 11px;
+		line-height: 1.4;
+		background: var(--mist);
+		border-radius: 6px;
+		padding: 6px 8px;
+		white-space: pre-wrap;
+		word-break: break-word;
+	}
+	@media (max-width: 900px) { .tool-panel { display: none; } }
+
+	.messages {
+		flex: 1;
+		overflow-y: auto;
+		padding: 22px 20px 14px;
+		display: flex;
+		flex-direction: column;
+		gap: 14px;
+	}
+	.messages::-webkit-scrollbar { width: 8px; }
+	.messages::-webkit-scrollbar-thumb { background: #d5d9e0; border-radius: 999px; }
+
+	.row {
+		display: flex;
+		align-items: flex-end;
+		gap: 8px;
+		max-width: 82%;
+		animation: rise 0.22s ease-out;
+	}
+	.row.user { align-self: flex-end; flex-direction: row-reverse; }
+	.row.ai { align-self: flex-start; }
+	@keyframes rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+	.avatar {
+		width: 26px; height: 26px; border-radius: 50%; flex: none;
+		display: flex; align-items: center; justify-content: center;
+		font-size: 11px; font-weight: 700;
+	}
+	.avatar.ai { background: linear-gradient(155deg, var(--cobalt) 0%, var(--cobalt-deep) 100%); color: #f7f9ff; }
+	.avatar.user { background: var(--cobalt-tint); color: var(--cobalt-deep); }
+
+	.bubbleCol { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+	.row.user .bubbleCol { align-items: flex-end; }
+
+	.bubble {
+		padding: 11px 15px;
+		border-radius: 16px;
+		line-height: 1.5;
+		font-size: 14.5px;
+		white-space: pre-wrap;
+		word-wrap: break-word;
+	}
+	.row.user .bubble {
+		background: var(--cobalt);
+		color: #f8f9fb;
+		border-bottom-right-radius: 5px;
+	}
+	.row.ai .bubble {
+		background: #ffffff;
+		border: 1px solid var(--line);
+		border-bottom-left-radius: 5px;
+	}
+	.timestamp { font-size: 11px; color: var(--slate); padding: 0 3px; opacity: 0.75; }
+
+	.bubble.notice { align-self: center; background: transparent; color: var(--slate); font-size: 12.5px; text-align: center; }
+	.bubble.error { background: var(--rust-tint); border: 1px solid var(--rust); color: var(--rust); }
+
+	.code-pill {
+		display: inline-block;
+		background: var(--mint-tint);
+		color: var(--mint);
+		font-weight: 700;
+		padding: 1px 8px;
+		border-radius: 999px;
+		font-size: 13px;
+	}
+	.slot-suggestions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+	.slot-btn {
+		font-family: inherit;
+		font-size: 13px;
+		font-weight: 600;
+		color: var(--cobalt);
+		background: var(--cobalt-tint);
+		border: 1px solid #b7c9f2;
+		border-radius: 999px;
+		padding: 7px 14px;
+		cursor: pointer;
+		transition: background 0.15s ease, color 0.15s ease, transform 0.1s ease;
+	}
+	.slot-btn:hover:not(:disabled) { background: var(--cobalt); color: #f8f9fb; transform: translateY(-1px); }
+	.slot-btn:disabled { cursor: default; opacity: 0.5; }
+	.slot-btn.selected { background: var(--cobalt); color: #f8f9fb; opacity: 1; }
+
+	.typingLabel { font-size: 13.5px; color: var(--slate); vertical-align: middle; }
+	.typing { display: inline-flex; align-items: center; height: 14px; vertical-align: middle; }
+	.typing span {
+		display: inline-block; width: 6px; height: 6px; margin: 0 2px;
+		background: var(--slate); border-radius: 50%;
+		animation: blink 1.2s infinite ease-in-out;
+	}
+	.typing span:nth-child(2) { animation-delay: 0.2s; }
+	.typing span:nth-child(3) { animation-delay: 0.4s; }
+	@keyframes blink { 0%, 80%, 100% { opacity: 0.2; } 40% { opacity: 1; } }
+
+	.composer {
+		flex: none;
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		padding: 14px 18px 18px;
+		background: var(--mist);
+		border-top: 1px solid var(--line);
+	}
+	.composer input {
+		flex: 1;
+		border: 1px solid var(--line);
+		background: #ffffff;
+		border-radius: 999px;
+		padding: 12px 18px;
+		font-size: 14.5px;
+		font-family: inherit;
+		color: var(--ink);
+		transition: border-color 0.15s ease, box-shadow 0.15s ease;
+	}
+	.composer input:focus { outline: none; border-color: var(--cobalt); box-shadow: 0 0 0 3px var(--cobalt-tint); }
+	.composer button {
+		flex: none;
+		width: 42px; height: 42px;
+		display: flex; align-items: center; justify-content: center;
+		color: #f8f9fb;
+		background: var(--cobalt);
+		border: none;
+		border-radius: 50%;
+		cursor: pointer;
+		transition: background 0.15s ease, transform 0.1s ease;
+	}
+	.composer button svg { width: 18px; height: 18px; }
+	.composer button:hover:not(:disabled) { background: var(--cobalt-deep); }
+	.composer button:active:not(:disabled) { transform: scale(0.94); }
+	.composer button:disabled { opacity: 0.5; cursor: default; }
+
+	@media (max-width: 640px) {
+		body { padding: 0; }
+		.appShell { max-width: none; height: 100%; border-radius: 0; box-shadow: none; }
+		.row { max-width: 90%; }
+	}
+
+	@media (prefers-color-scheme: dark) {
+		:root { --card-bg: #161c25; }
+		body { background: linear-gradient(160deg, #0b0e13 0%, #0f1319 100%); }
+		header { background: #161c25; border-color: #232a35; }
+		main { background: #0f1319; }
+		.row.ai .bubble { background: #1d2430; border-color: #2a3240; color: #e9ecf2; }
+		.avatar.user { background: #232c3d; color: #b9c6e6; }
+		.composer { background: #0f1319; border-color: #232a35; }
+		.composer input { background: #1d2430; border-color: #2a3240; color: #e9ecf2; }
+		.composer input:focus { box-shadow: 0 0 0 3px rgba(36, 81, 214, 0.28); }
+		.backLink:hover { background: #1d2430; }
+		.backLink, .brand .status, .bubble.notice, .timestamp { color: #8b95a6; }
+		.messages::-webkit-scrollbar-thumb { background: #2a3240; }
+		.tool-panel { border-color: #232a35; }
+		.tool-panel-header { background: #0f1319; border-color: #232a35; }
+		.tool-entry { background: #1d2430; border-color: #2a3240; }
+		.tool-json { background: #0f1319; color: #c7cedb; }
+		.tool-name { color: #b9c6e6; }
+		.tool-entry-label, .tool-time, .tool-empty { color: #8b95a6; }
+	}
+</style>
+</head>
+<body>
+
+<div class="appShell">
+	<header>
+		<div class="brand">
+			<span class="mark"></span>
+			<span class="brandText">
+				はやぶさクリニック
+				<span class="status"><span class="dot"></span>予約アシスタント · オンライン</span>
+			</span>
+		</div>
+		<a class="backLink" href="index.html">← サイトに戻る</a>
+	</header>
+
+	<main>
+		<div class="chatCol">
+			<div class="messages" id="messages"></div>
+			<form class="composer" id="composer">
+				<input id="messageInput" type="text" placeholder="予約、予約の変更、ご予約の確認などをどうぞ…" autocomplete="off" />
+				<button type="submit" id="sendBtn" aria-label="送信">
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+				</button>
+			</form>
+		</div>
+		<div class="tool-panel" id="toolPanel">
+			<div class="tool-panel-header">
+				<span class="tool-panel-label">🔧 ツールアクティビティ<span class="tool-count" id="toolCount">0</span></span>
+				<button type="button" class="tool-toggle-btn" id="toolPanelToggle">隠す</button>
+			</div>
+			<div class="tool-panel-body" id="toolPanelBody">
+				<div class="tool-empty" id="toolEmpty">まだツール呼び出しはありません。最新のデータが必要な質問をしてみてください（例：「明日、佐藤先生の空きはありますか？」）。</div>
+			</div>
+		</div>
+	</main>
+</div>
+
+<script>
+	var messagesEl = document.getElementById("messages");
+	var form = document.getElementById("composer");
+	var input = document.getElementById("messageInput");
+	var sendBtn = document.getElementById("sendBtn");
+	var conversationID = localStorage.getItem("kestrel_conversationID") || "";
+	var busy = false;
+
+	function escapeHtml(text) {
+		var div = document.createElement("div");
+		div.textContent = text;
+		return div.innerHTML;
+	}
+	function escapeAttr(text) {
+		return String(text).replace(/&/g, "&amp;").replace(/"/g, "&quot;");
+	}
+	function scrollToBottom() {
+		messagesEl.scrollTop = messagesEl.scrollHeight;
+	}
+	function nowLabel() {
+		return new Date().toLocaleTimeString("ja-JP", {hour: "numeric", minute: "2-digit"});
+	}
+	function addBubble(className, text) {
+		// Plain centered notices/errors don't get the avatar+row treatment.
+		if (className === "notice") {
+			var notice = document.createElement("div");
+			notice.className = "bubble notice";
+			notice.textContent = text;
+			messagesEl.appendChild(notice);
+			scrollToBottom();
+			return notice;
+		}
+
+		var row = document.createElement("div");
+		row.className = "row " + (className === "user" ? "user" : "ai");
+
+		var avatar = document.createElement("div");
+		avatar.className = "avatar " + (className === "user" ? "user" : "ai");
+		avatar.textContent = className === "user" ? "私" : "は";
+
+		var col = document.createElement("div");
+		col.className = "bubbleCol";
+
+		var bubble = document.createElement("div");
+		bubble.className = "bubble " + className;
+		bubble.textContent = text;
+
+		var stamp = document.createElement("div");
+		stamp.className = "timestamp";
+		stamp.textContent = nowLabel();
+
+		col.appendChild(bubble);
+		col.appendChild(stamp);
+		row.appendChild(avatar);
+		row.appendChild(col);
+		messagesEl.appendChild(row);
+		scrollToBottom();
+		return bubble;
+	}
+	function formatDateLabel(dateStr) {
+		try {
+			var d = new Date(dateStr + "T00:00:00");
+			return d.toLocaleDateString("ja-JP", {weekday: "short", month: "short", day: "numeric"});
+		} catch (e) {
+			return dateStr;
+		}
+	}
+	function renderSlotButtonsHTML(data) {
+		if (!data || !data.options || !data.options.length) return "";
+		var staffName = data.staffName || "";
+		var html = '<div class="slot-suggestions" data-staff="' + escapeAttr(staffName) + '">';
+		data.options.forEach(function (opt) {
+			var label = formatDateLabel(opt.date) + " · " + opt.time;
+			html += '<button type="button" class="slot-btn" data-date="' + escapeAttr(opt.date) + '" data-time="' + escapeAttr(opt.time) + '">' + escapeHtml(label) + "</button>";
+		});
+		html += "</div>";
+		return html;
+	}
+	function prettyJSON(rawText) {
+		try {
+			return JSON.stringify(JSON.parse(rawText), null, 2);
+		} catch (e) {
+			return String(rawText);
+		}
+	}
+
+	// Renders the server-side tool-call trace (APT_WebChat_RunTurn's $trace,
+	// forwarded by APT_WebChat_Handle) once a reply lands. This endpoint is
+	// synchronous, so all of this turn's tool calls appear at once rather
+	// than incrementally.
+	function renderTrace(trace) {
+		if (!trace || !trace.length) return;
+
+		var empty = document.getElementById("toolEmpty");
+		if (empty) empty.parentNode.removeChild(empty);
+
+		var panelBody = document.getElementById("toolPanelBody");
+		var countEl = document.getElementById("toolCount");
+
+		trace.forEach(function (call) {
+			var entry = document.createElement("div");
+			entry.className = "tool-entry new";
+			entry.innerHTML =
+				'<div class="tool-entry-head">' +
+					'<span class="tool-name">🔧 ' + escapeHtml(call.name) + '</span>' +
+					'<span class="tool-time">' + nowLabel() + '</span>' +
+				'</div>' +
+				'<div class="tool-entry-label">引数</div>' +
+				'<pre class="tool-json">' + escapeHtml(prettyJSON(call.arguments)) + '</pre>' +
+				'<div class="tool-entry-label">結果</div>' +
+				'<pre class="tool-json">' + escapeHtml(prettyJSON(call.result)) + '</pre>';
+			panelBody.appendChild(entry);
+			countEl.textContent = String(parseInt(countEl.textContent, 10) + 1);
+			setTimeout(function () { entry.className = "tool-entry"; }, 900);
+		});
+
+		panelBody.scrollTop = panelBody.scrollHeight;
+	}
+
+	(function () {
+		var toggleBtn = document.getElementById("toolPanelToggle");
+		var panel = document.getElementById("toolPanel");
+		toggleBtn.addEventListener("click", function () {
+			var collapsed = panel.classList.toggle("collapsed");
+			toggleBtn.textContent = collapsed ? "表示" : "隠す";
+		});
+	})();
+
+	function formatReply(text) {
+		var slotsHTML = "";
+		var cleanText = text;
+		var slotsMatch = /<slots>([\s\S]*?)<\/slots>/.exec(text);
+		if (slotsMatch) {
+			cleanText = text.slice(0, slotsMatch.index) + text.slice(slotsMatch.index + slotsMatch[0].length);
+			try {
+				slotsHTML = renderSlotButtonsHTML(JSON.parse(slotsMatch[1]));
+			} catch (e) {
+				slotsHTML = "";
+			}
+		}
+		var escaped = escapeHtml(cleanText.trim());
+		escaped = escaped.replace(/\bAPT-[A-Z0-9]{6}\b/g, function (code) {
+			return '<span class="code-pill">' + code + "</span>";
+		});
+		return escaped + slotsHTML;
+	}
+
+	function setBusy(state) {
+		busy = state;
+		input.disabled = state;
+		sendBtn.disabled = state;
+	}
+
+	// Cosmetic only: the backend call below is a single blocking request that may
+	// internally run several tool-calling rounds with nothing to report until it's
+	// fully done, so there's no real progress to show - this just rotates reassuring
+	// text on a timer so a multi-second wait doesn't feel dead.
+	var TYPING_MESSAGES = ["考えています…", "スケジュールを確認しています…", "お調べしています…", "もう少々お待ちください…"];
+
+	function sendMessage(text) {
+		if (!text || busy) return;
+		setBusy(true);
+		addBubble("user", text);
+
+		var typingRow = document.createElement("div");
+		typingRow.className = "row ai";
+		typingRow.innerHTML = '<div class="avatar ai">は</div><div class="bubbleCol"><div class="bubble ai"><span class="typingLabel">' + TYPING_MESSAGES[0] + '</span> <span class="typing"><span></span><span></span><span></span></span></div></div>';
+		messagesEl.appendChild(typingRow);
+		scrollToBottom();
+
+		var typingLabelEl = typingRow.querySelector(".typingLabel");
+		var typingStep = 0;
+		var typingInterval = setInterval(function () {
+			typingStep++;
+			if (typingStep < TYPING_MESSAGES.length) {
+				typingLabelEl.textContent = TYPING_MESSAGES[typingStep];
+				scrollToBottom();
+			}
+		}, 1600);
+
+		// ORDA REST class-function call: body is a JSON array of positional args (one
+		// entry here, matching the single $body parameter of DataStore.chat()); 4D wraps
+		// whatever the function returns as {"result": ...}.
+		fetch("/rest/$catalog/chat", {
+			method: "POST",
+			headers: {"Content-Type": "application/json"},
+			body: JSON.stringify([{conversationID: conversationID, message: text}])
+		})
+			.then(function (res) {
+				return res.text().then(function (raw) {
+					var parsed;
+					try {
+						parsed = JSON.parse(raw);
+					} catch (e) {
+						throw new Error("サーバーからJSON以外の応答が返されました（HTTP " + res.status + "）：" + raw.slice(0, 200));
+					}
+					return parsed;
+				});
+			})
+			.then(function (parsed) {
+				typingRow.remove();
+				var data = parsed && parsed.result;
+				if (!data || !data.success) {
+					var errMsg = (data && data.error) || (parsed && parsed.error && parsed.error.message) || "問題が発生しました。もう一度お試しください。";
+					addBubble("error", errMsg);
+					return;
+				}
+				conversationID = data.conversationID;
+				localStorage.setItem("kestrel_conversationID", conversationID);
+
+				renderTrace(data.trace);
+
+				var bubble = addBubble("ai", "");
+				bubble.innerHTML = formatReply(data.reply);
+				scrollToBottom();
+			})
+			.catch(function (err) {
+				typingRow.remove();
+				addBubble("error", "アシスタントに接続できませんでした：" + err.message);
+			})
+			.finally(function () {
+				clearInterval(typingInterval);
+				setBusy(false);
+				input.focus();
+			});
+	}
+
+	form.addEventListener("submit", function (event) {
+		event.preventDefault();
+		var text = input.value.trim();
+		if (!text) return;
+		input.value = "";
+		sendMessage(text);
+	});
+
+	// Clicking a suggested slot sends it as a plain message, same as typing it.
+	messagesEl.addEventListener("click", function (event) {
+		var btn = event.target;
+		while (btn && btn !== messagesEl && (!btn.className || btn.className.indexOf("slot-btn") === -1)) {
+			btn = btn.parentNode;
+		}
+		if (!btn || btn === messagesEl || btn.disabled) return;
+
+		var group = btn.parentNode;
+		var staffName = (group && group.getAttribute) ? (group.getAttribute("data-staff") || "") : "";
+		var label = formatDateLabel(btn.getAttribute("data-date"));
+		var time = btn.getAttribute("data-time");
+
+		var buttons = group.getElementsByTagName("button");
+		for (var i = 0; i < buttons.length; i++) buttons[i].disabled = true;
+		btn.className += " selected";
+
+		var message = label + " " + time + "で予約をお願いします" + (staffName ? "（担当：" + staffName + "）" : "") + "。";
+		sendMessage(message);
+	});
+
+	addBubble("notice", conversationID ? "おかえりなさい。前回の続きからどうぞ。" : "予約、予約の変更・キャンセル、ご予約の確認をお手伝いします。");
+	input.focus();
+</script>
+</body>
+</html>

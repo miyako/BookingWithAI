@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+	<file datatype="plaintext" original="Admin" source-language="en" target-language="en">
+		<body>
+			<trans-unit id="Admin_WindowTitle" resname="Admin_WindowTitle">
+				<source>Appointment Manager</source>
+				<target>Appointment Manager</target>
+			</trans-unit>
+			<trans-unit id="Admin_Title" resname="Admin_Title">
+				<source>Appointment Manager</source>
+				<target>Appointment Manager</target>
+			</trans-unit>
+			<trans-unit id="Admin_Subtitle" resname="Admin_Subtitle">
+				<source>Search, filter, and review appointments</source>
+				<target>Search, filter, and review appointments</target>
+			</trans-unit>
+			<trans-unit id="Admin_SearchPlaceholder" resname="Admin_SearchPlaceholder">
+				<source>Search by code or client name...</source>
+				<target>Search by code or client name...</target>
+			</trans-unit>
+			<trans-unit id="Admin_BtnSearch" resname="Admin_BtnSearch">
+				<source>Search</source>
+				<target>Search</target>
+			</trans-unit>
+			<trans-unit id="Admin_FilterUpcoming" resname="Admin_FilterUpcoming">
+				<source>Upcoming</source>
+				<target>Upcoming</target>
+			</trans-unit>
+			<trans-unit id="Admin_FilterPast" resname="Admin_FilterPast">
+				<source>Past</source>
+				<target>Past</target>
+			</trans-unit>
+			<trans-unit id="Admin_FilterAll" resname="Admin_FilterAll">
+				<source>All</source>
+				<target>All</target>
+			</trans-unit>
+			<trans-unit id="Admin_FilterCancelled" resname="Admin_FilterCancelled">
+				<source>Cancelled</source>
+				<target>Cancelled</target>
+			</trans-unit>
+			<trans-unit id="Admin_Code" resname="Admin_Code">
+				<source>Code</source>
+				<target>Code</target>
+			</trans-unit>
+			<trans-unit id="Admin_Date" resname="Admin_Date">
+				<source>Date</source>
+				<target>Date</target>
+			</trans-unit>
+			<trans-unit id="Admin_Time" resname="Admin_Time">
+				<source>Time</source>
+				<target>Time</target>
+			</trans-unit>
+			<trans-unit id="Admin_Client" resname="Admin_Client">
+				<source>Client</source>
+				<target>Client</target>
+			</trans-unit>
+			<trans-unit id="Admin_Staff" resname="Admin_Staff">
+				<source>Staff</source>
+				<target>Staff</target>
+			</trans-unit>
+			<trans-unit id="Admin_Status" resname="Admin_Status">
+				<source>Status</source>
+				<target>Status</target>
+			</trans-unit>
+			<trans-unit id="Admin_DetailTitle" resname="Admin_DetailTitle">
+				<source>Appointment detail</source>
+				<target>Appointment detail</target>
+			</trans-unit>
+			<trans-unit id="Admin_DateTime" resname="Admin_DateTime">
+				<source>Date / Time</source>
+				<target>Date / Time</target>
+			</trans-unit>
+			<trans-unit id="Admin_Reason" resname="Admin_Reason">
+				<source>Reason</source>
+				<target>Reason</target>
+			</trans-unit>
+			<trans-unit id="Admin_BtnCancel" resname="Admin_BtnCancel">
+				<source>Cancel appointment</source>
+				<target>Cancel appointment</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

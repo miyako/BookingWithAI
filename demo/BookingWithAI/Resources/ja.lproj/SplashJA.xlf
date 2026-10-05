@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+	<file datatype="plaintext" original="Splash" source-language="en" target-language="ja">
+		<body>
+			<trans-unit id="Splash_WindowTitle" resname="Splash_WindowTitle">
+				<source>demoAPT · Hayabusa Clinic</source>
+				<target>demoAPT · はやぶさクリニック</target>
+			</trans-unit>
+			<trans-unit id="Splash_LogoLetter" resname="Splash_LogoLetter">
+				<source>H</source>
+				<target>は</target>
+			</trans-unit>
+			<trans-unit id="Splash_SidebarTitle" resname="Splash_SidebarTitle">
+				<source>Hayabusa Clinic</source>
+				<target>はやぶさクリニック</target>
+			</trans-unit>
+			<trans-unit id="Splash_SidebarSubtitle" resname="Splash_SidebarSubtitle">
+				<source>AI-powered appointment booking</source>
+				<target>AIによる予約受付</target>
+			</trans-unit>
+			<trans-unit id="Splash_Bullet1" resname="Splash_Bullet1">
+				<source>•  AI tool-calling chat</source>
+				<target>•  AIツール呼び出しチャット</target>
+			</trans-unit>
+			<trans-unit id="Splash_Bullet2" resname="Splash_Bullet2">
+				<source>•  Live ORDA availability</source>
+				<target>•  ORDAで最新の空き状況</target>
+			</trans-unit>
+			<trans-unit id="Splash_Bullet3" resname="Splash_Bullet3">
+				<source>•  Native staff admin</source>
+				<target>•  ネイティブの管理フォーム</target>
+			</trans-unit>
+			<trans-unit id="Splash_SidebarFooter" resname="Splash_SidebarFooter">
+				<source>Demo project</source>
+				<target>デモプロジェクト</target>
+			</trans-unit>
+			<trans-unit id="Splash_Eyebrow" resname="Splash_Eyebrow">
+				<source>4D TECH NOTE</source>
+				<target>4D テクニカルノート</target>
+			</trans-unit>
+			<trans-unit id="Splash_Heading" resname="Splash_Heading">
+				<source>AI-Powered Appointment Booking</source>
+				<target>AIによる予約受付システム</target>
+			</trans-unit>
+			<trans-unit id="Splash_Description" resname="Splash_Description">
+				<source>A 4D AIKit tool-calling assistant for a fictional clinic. The model reads the conversation, picks the right 4D method, and 4D executes real ORDA queries — no keyword matching, no manual routing.</source>
+				<target>架空のクリニックのための、4D AIKitのツール呼び出しを使ったアシスタントです。モデルが会話を読み取って適切な4Dメソッドを選び、4Dが実際のORDAクエリを実行します。キーワードの照合も、手作業による振り分けも不要です。</target>
+			</trans-unit>
+			<trans-unit id="Splash_Card1Label" resname="Splash_Card1Label">
+				<source>VERSION</source>
+				<target>バージョン</target>
+			</trans-unit>
+			<trans-unit id="Splash_Card2Label" resname="Splash_Card2Label">
+				<source>STACK</source>
+				<target>構成</target>
+			</trans-unit>
+			<trans-unit id="Splash_Card3Label" resname="Splash_Card3Label">
+				<source>TOOLS</source>
+				<target>ツール</target>
+			</trans-unit>
+			<trans-unit id="Splash_Card3Value" resname="Splash_Card3Value">
+				<source>12 OpenAI tools</source>
+				<target>OpenAIツール12種</target>
+			</trans-unit>
+			<trans-unit id="Splash_Summary" resname="Splash_Summary">
+				<source>Same business logic, chat or clinic staff — AI and Admin never disagree.</source>
+				<target>チャットも管理フォームも同じビジネスロジック。結果は常に一致します。</target>
+			</trans-unit>
+			<trans-unit id="Splash_BtnLaunch" resname="Splash_BtnLaunch">
+				<source>Open Admin →</source>
+				<target>管理フォームを開く →</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

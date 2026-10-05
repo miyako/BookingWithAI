@@ -1,0 +1,110 @@
+{
+	"tables": {
+		"Conversation": {
+			"color": {
+				"red": 255,
+				"green": 255,
+				"blue": 255,
+				"alpha": 0
+			},
+			"coordinates": {
+				"left": 253,
+				"top": 248,
+				"width": 120,
+				"height": 167.33203125
+			},
+			"displayable_fields_count": 6,
+			"fields_ordering": 1
+		},
+		"Availability": {
+			"color": {
+				"red": 255,
+				"green": 153,
+				"blue": 63,
+				"alpha": 255
+			},
+			"coordinates": {
+				"left": 89,
+				"top": 249,
+				"width": 120,
+				"height": 167.33203125
+			},
+			"displayable_fields_count": 6,
+			"fields_ordering": 1
+		},
+		"Appointment": {
+			"color": {
+				"red": 255,
+				"green": 255,
+				"blue": 255,
+				"alpha": 0
+			},
+			"coordinates": {
+				"left": 440,
+				"top": 43,
+				"width": 220,
+				"height": 267.33203125
+			},
+			"displayable_fields_count": 10,
+			"fields_ordering": 1
+		},
+		"Client": {
+			"color": {
+				"red": 181,
+				"green": 145,
+				"blue": 209,
+				"alpha": 255
+			},
+			"coordinates": {
+				"left": 247,
+				"top": 33,
+				"width": 120,
+				"height": 166.33203125
+			},
+			"displayable_fields_count": 5,
+			"fields_ordering": 1
+		},
+		"Staff": {
+			"color": {
+				"red": 252,
+				"green": 191,
+				"blue": 73,
+				"alpha": 255
+			},
+			"coordinates": {
+				"left": 40,
+				"top": 40,
+				"width": 120,
+				"height": 168.33203125
+			},
+			"displayable_fields_count": 6,
+			"fields_ordering": 1
+		}
+	},
+	"relations": {
+		"D7C63FE0BB7F43F886A3A57F908F1769": {
+			"color": {
+				"red": 240,
+				"green": 240,
+				"blue": 240,
+				"alpha": 0
+			}
+		},
+		"96ABD92E19084455BBAA381382985828": {
+			"color": {
+				"red": 240,
+				"green": 240,
+				"blue": 240,
+				"alpha": 0
+			}
+		},
+		"82880186635D4A2AB4BE45491B900DE6": {
+			"color": {
+				"red": 240,
+				"green": 240,
+				"blue": 240,
+				"alpha": 0
+			}
+		}
+	}
+}

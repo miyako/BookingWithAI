@@ -1,0 +1,32 @@
+4, Appointment Manager
+Appointment Manager
+Search, filter, and review appointments
+Search by code or client name....
+Search
+All
+Upcoming
+Past
+Cancelled
+Code
+Date
+lime
+Client
+Staff
+Status
+APT-DEMO02 2026-08-06 09:00 Thomas Leroy Claire Bernard
+confirmed
+Appointment detail
+Code
+APT-DEMO02
+Date / Time
+2026-08-06
+09:00
+Client
+Thomas Leroy
+Staff
+Claire Bernard
+Status
+confirmed
+Reason
+Annual physical
+Cancel appointment

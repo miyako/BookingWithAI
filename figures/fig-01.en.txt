@@ -1,0 +1,38 @@
+demoAPT — System Architecture & Request Flow
+Visitor's Browser
+webchat.html — public web page, no native 4D client
+POST /rest/$catalog/chat
+{conversationID, message}
+4D Web Server + ORDA REST
+DataStore.4dm — exposed Function chat($body)
+forwards to
+APT_WebChat_Handle
+load or create the Conversation record
+refresh system prompt · append visitor's message
+APT_WebChat_RunTurn — loop, capped at 6 rounds per visitor turn
+browser renders reply · <slots> become buttons
+chat.completions.create(
+OpenAI API
+messages, tools; {stream: False})
+GPT-4o (LLM)
+tool result appended, model asked again
+finish_reason
+final text
+tool_calls
+APT_Tool_Dispatch
+routes by tool name
+final reply ready
+no more tool calls — exit loop
+APT_Tool_* methods
+one 4D method per tool
+ORDA tables
+Staff · Client · Appointment
+Availability · Conversation
+same APT_Tool_* methods — no AI, no HTTP request
+Admin form (native)
+clinic staff — search, filter,
+cancel by hand
+Save & respond
+Conversation.messages updated · {reply, conversationID}
+sent back in the HTTP response
+demoAPT · 4D AIKit + OpenAI Tool Calling — Kestrel Health

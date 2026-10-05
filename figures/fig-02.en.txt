@@ -1,0 +1,84 @@
+VISIBLE CONVERSATION
+BEHIND THE SCENES — OpenAI Tools + 4D Handlers
+TURN 1 — Who are you?
+OpenAI Model — no tool call needed
+User
+Web Chat UI
+Understands intent: booking request
+“Hi, I'd like to book an appointment”
+messages[]
+Asks for identity before calling any tool
+(direct reply — no DB access required yet)
+AI reply
+“Sure! What's your name or email?”
+TURN 2 — Identify the caller
+Model picks tool → findClient
+User
+Web Chat UI
+findClient({name:"Marie Dupont", email:"marie@email.com"})
+“Marie Dupont, marie@email.com”
+appends msg
+silent → user sees nothing
+APT_Tool_FindClient($1) → queries Client table
+plain-code match on email/phone/name — not ORDA's .query() DSL
+createClient()
+Client
+NO
+YES
+Returns clientID
+→ new clientID (dedup-checked)
+found?
+→ model continues
+AI reply
+Model has clientID → crafts reply + asks what they need
+“Hi Marie! Who & when?”
+“Hi Marie! Who would you like to see, and when?”
+TURN 3 — Browse availability
+Model chains two tool calls
+User
+Web Chat UI
+① getStaffList() → finds staffID for "Dr. Martin"
+“Dr. Martin, this week”
+appends msg
+② getWeekAvailability(staffID) → 7 days of open slots
+AI reply
+“Mon 09:00, Tue 09:00 … which?”
+TURN 4 — Book the slot
+Model calls createAppointment
+User
+Web Chat UI
+createAppointment(clientID, staffID,
+“Monday 10:00 please”
+appends msg
+date:"2026-07-27", time:"10:00")
+APT_Tool_CreateAppointment($1)
+AI reply
+Re-checks the slot · inserts record · generates confirmationCode "APT-F8E2C5"
+“Booked! Monday 10:00 with Dr. Martin. Code: APT-F8E2C5”
+LATER — Check status by code
+Model detects confirmation code pattern
+User (returning)
+Web Chat UI
+“Status of APT-F8E2C5?”
+new session
+getAppointmentByCode("APT-F8E2C5") → {status:"confirmed", date…}
+AI reply
+“Your appointment is confirmed: Monday at 10:00 with Dr. Martin.”
+conversation continues — cancel, reschedule, list appointments…
+ALL 12 TOOLS — model picks the right one per turn
+checkAvailability
+getStaffList
+getNextAvailable
+getWeekAvailability
+createAppointment
+cancelAppointment
+rescheduleAppointment
+listAppointments
+getAppointmentDetails
+getAppointmentByCode ★
+findClient
+createClient
+booking & availability tools
+identity tools
+★ = used for status check
+demoAPT · 4D AIKit + OpenAI Tool Calling — Kestrel Health
