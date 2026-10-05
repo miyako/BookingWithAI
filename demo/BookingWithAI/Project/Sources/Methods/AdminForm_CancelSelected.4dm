@@ -15,7 +15,7 @@
 #DECLARE()
 
 If (Form:C1466.currentAppointment=Null:C1517)
-	ALERT:C41("Select an appointment first.")
+	ALERT:C41(Localized string("AlertSelectAppointment"))
 	return 
 End if 
 

@@ -28,7 +28,7 @@
 		"onTimer",
 		"onBoundVariableChange"
 	],
-	"windowTitle": "Appointment Manager",
+	"windowTitle": ":xliff:Admin_WindowTitle",
 	"destination": "detailScreen",
 	"pages": [
 		{
@@ -38,7 +38,7 @@
 			"objects": {
 				"title": {
 					"type": "text",
-					"text": "Appointment Manager",
+					"text": ":xliff:Admin_Title",
 					"top": 18,
 					"left": 24,
 					"width": 400,
@@ -49,7 +49,7 @@
 				},
 				"subtitle": {
 					"type": "text",
-					"text": "Search, filter, and review appointments",
+					"text": ":xliff:Admin_Subtitle",
 					"top": 46,
 					"left": 24,
 					"width": 500,
@@ -75,14 +75,14 @@
 					"width": 328,
 					"height": 32,
 					"dataSource": "Form.searchQuery",
-					"placeholder": "Search by code or client name...",
+					"placeholder": ":xliff:Admin_SearchPlaceholder",
 					"fill": "#f5f6f8",
 					"borderStyle": "none",
 					"borderRadius": 8
 				},
 				"btnSearch": {
 					"type": "button",
-					"text": "Search",
+					"text": ":xliff:Admin_BtnSearch",
 					"top": 90,
 					"left": 372,
 					"width": 76,
@@ -99,7 +99,7 @@
 				},
 				"btnFilterUpcoming": {
 					"type": "button",
-					"text": "Upcoming",
+					"text": ":xliff:Admin_FilterUpcoming",
 					"top": 90,
 					"left": 525,
 					"width": 96,
@@ -116,7 +116,7 @@
 				},
 				"btnFilterPast": {
 					"type": "button",
-					"text": "Past",
+					"text": ":xliff:Admin_FilterPast",
 					"top": 90,
 					"left": 628,
 					"width": 76,
@@ -133,7 +133,7 @@
 				},
 				"btnFilterAll": {
 					"type": "button",
-					"text": "All",
+					"text": ":xliff:Admin_FilterAll",
 					"top": 90,
 					"left": 452,
 					"width": 66,
@@ -150,7 +150,7 @@
 				},
 				"btnFilterCancelled": {
 					"type": "button",
-					"text": "Cancelled",
+					"text": ":xliff:Admin_FilterCancelled",
 					"top": 90,
 					"left": 710,
 					"width": 96,
@@ -181,6 +181,7 @@
 					"fill": "#ffffff",
 					"alternateFill": "#eef2fb",
 					"verticalAlign": "middle",
+					"resizingMode": "legacy",
 					"method": "ObjectMethods/appointmentList.4dm",
 					"events": [
 						"onSelectionChange"
@@ -189,7 +190,7 @@
 						{
 							"name": "Code",
 							"header": {
-								"text": "Code",
+								"text": ":xliff:Admin_Code",
 								"name": "Header1",
 								"stroke": "#696969"
 							},
@@ -199,12 +200,13 @@
 								"name": "Footer1"
 							},
 							"stroke": "#000000",
-							"horizontalPadding": 2
+							"horizontalPadding": 2,
+							"truncateMode": "none"
 						},
 						{
 							"name": "Date",
 							"header": {
-								"text": "Date",
+								"text": ":xliff:Admin_Date",
 								"name": "Header2",
 								"stroke": "#696969"
 							},
@@ -214,12 +216,13 @@
 								"name": "Footer2"
 							},
 							"stroke": "#000000",
-							"horizontalPadding": 2
+							"horizontalPadding": 2,
+							"truncateMode": "none"
 						},
 						{
 							"name": "Time",
 							"header": {
-								"text": "Time",
+								"text": ":xliff:Admin_Time",
 								"name": "Header3",
 								"stroke": "#696969"
 							},
@@ -230,6 +233,7 @@
 							},
 							"stroke": "#000000",
 							"horizontalPadding": 2,
+							"truncateMode": "none",
 							"dateFormat": "systemShort",
 							"timeFormat": "hh_mm",
 							"dataSourceTypeHint": "time",
@@ -238,7 +242,7 @@
 						{
 							"name": "Client",
 							"header": {
-								"text": "Client",
+								"text": ":xliff:Admin_Client",
 								"name": "Header4",
 								"stroke": "#696969"
 							},
@@ -248,12 +252,13 @@
 								"name": "Footer4"
 							},
 							"stroke": "#000000",
-							"horizontalPadding": 2
+							"horizontalPadding": 2,
+							"truncateMode": "none"
 						},
 						{
 							"name": "Staff",
 							"header": {
-								"text": "Staff",
+								"text": ":xliff:Admin_Staff",
 								"name": "Header5",
 								"stroke": "#696969"
 							},
@@ -263,22 +268,24 @@
 								"name": "Footer5"
 							},
 							"stroke": "#000000",
-							"horizontalPadding": 2
+							"horizontalPadding": 2,
+							"truncateMode": "none"
 						},
 						{
 							"name": "Status",
 							"header": {
-								"text": "Status",
+								"text": ":xliff:Admin_Status",
 								"name": "Header6",
 								"stroke": "#696969"
 							},
-							"dataSource": "This:C1470.status",
+							"dataSource": "This:C1470.statusLabel",
 							"width": 85,
 							"footer": {
 								"name": "Footer6"
 							},
 							"stroke": "#000000",
-							"horizontalPadding": 2
+							"horizontalPadding": 2,
+							"truncateMode": "none"
 						}
 					]
 				},
@@ -307,7 +314,7 @@
 				},
 				"detailHeaderTitle": {
 					"type": "text",
-					"text": "Appointment detail",
+					"text": ":xliff:Admin_DetailTitle",
 					"top": 154,
 					"left": 640,
 					"width": 300,
@@ -319,7 +326,7 @@
 				},
 				"lblCode": {
 					"type": "text",
-					"text": "Code",
+					"text": ":xliff:Admin_Code",
 					"top": 206,
 					"left": 640,
 					"width": 120,
@@ -357,7 +364,7 @@
 				},
 				"lblWhen": {
 					"type": "text",
-					"text": "Date / Time",
+					"text": ":xliff:Admin_DateTime",
 					"top": 246,
 					"left": 640,
 					"width": 120,
@@ -413,7 +420,7 @@
 				},
 				"lblClient": {
 					"type": "text",
-					"text": "Client",
+					"text": ":xliff:Admin_Client",
 					"top": 286,
 					"left": 640,
 					"width": 120,
@@ -451,7 +458,7 @@
 				},
 				"lblStaff": {
 					"type": "text",
-					"text": "Staff",
+					"text": ":xliff:Admin_Staff",
 					"top": 326,
 					"left": 640,
 					"width": 120,
@@ -489,7 +496,7 @@
 				},
 				"lblStatus": {
 					"type": "text",
-					"text": "Status",
+					"text": ":xliff:Admin_Status",
 					"top": 366,
 					"left": 640,
 					"width": 120,
@@ -504,7 +511,7 @@
 					"left": 780,
 					"width": 160,
 					"height": 20,
-					"dataSource": "Form.currentAppointment.status",
+					"dataSource": "Form.currentAppointment.statusLabel",
 					"enterable": false,
 					"focusable": false,
 					"fill": "transparent",
@@ -528,7 +535,7 @@
 				},
 				"lblReason": {
 					"type": "text",
-					"text": "Reason",
+					"text": ":xliff:Admin_Reason",
 					"top": 406,
 					"left": 640,
 					"width": 300,
@@ -555,7 +562,7 @@
 				},
 				"btnCancelSelected": {
 					"type": "button",
-					"text": "Cancel appointment",
+					"text": ":xliff:Admin_BtnCancel",
 					"top": 538,
 					"left": 640,
 					"width": 300,

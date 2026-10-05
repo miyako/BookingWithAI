@@ -28,7 +28,7 @@
 		"onTimer",
 		"onBoundVariableChange"
 	],
-	"windowTitle": "demoAPT · Kestrel Health",
+	"windowTitle": ":xliff:Splash_WindowTitle",
 	"destination": "detailScreen",
 	"pages": [
 		{
@@ -59,7 +59,7 @@
 				},
 				"logoLetter": {
 					"type": "text",
-					"text": "K",
+					"text": ":xliff:Splash_LogoLetter",
 					"top": 53,
 					"left": 52,
 					"width": 24,
@@ -70,7 +70,7 @@
 				},
 				"sidebarTitle": {
 					"type": "text",
-					"text": "Kestrel Health",
+					"text": ":xliff:Splash_SidebarTitle",
 					"top": 112,
 					"left": 32,
 					"width": 220,
@@ -81,7 +81,7 @@
 				},
 				"sidebarSubtitle": {
 					"type": "text",
-					"text": "AI-powered appointment booking",
+					"text": ":xliff:Splash_SidebarSubtitle",
 					"top": 140,
 					"left": 32,
 					"width": 220,
@@ -101,7 +101,7 @@
 				},
 				"bullet1": {
 					"type": "text",
-					"text": "•  AI tool-calling chat",
+					"text": ":xliff:Splash_Bullet1",
 					"top": 204,
 					"left": 32,
 					"width": 216,
@@ -111,7 +111,7 @@
 				},
 				"bullet2": {
 					"type": "text",
-					"text": "•  Live ORDA availability",
+					"text": ":xliff:Splash_Bullet2",
 					"top": 230,
 					"left": 32,
 					"width": 216,
@@ -121,7 +121,7 @@
 				},
 				"bullet3": {
 					"type": "text",
-					"text": "•  Native staff admin",
+					"text": ":xliff:Splash_Bullet3",
 					"top": 256,
 					"left": 32,
 					"width": 216,
@@ -131,7 +131,7 @@
 				},
 				"sidebarFooter": {
 					"type": "text",
-					"text": "Demo project",
+					"text": ":xliff:Splash_SidebarFooter",
 					"top": 496,
 					"left": 32,
 					"width": 216,
@@ -141,7 +141,7 @@
 				},
 				"eyebrow": {
 					"type": "text",
-					"text": "4D TECH NOTE",
+					"text": ":xliff:Splash_Eyebrow",
 					"top": 36,
 					"left": 312,
 					"width": 300,
@@ -152,7 +152,7 @@
 				},
 				"heading": {
 					"type": "text",
-					"text": "AI-Powered Appointment Booking",
+					"text": ":xliff:Splash_Heading",
 					"top": 56,
 					"left": 312,
 					"width": 460,
@@ -163,7 +163,7 @@
 				},
 				"description": {
 					"type": "text",
-					"text": "A 4D AIKit tool-calling assistant for a fictional clinic. The model reads the conversation, picks the right 4D method, and 4D executes real ORDA queries — no keyword matching, no manual routing.",
+					"text": ":xliff:Splash_Description",
 					"top": 96,
 					"left": 312,
 					"width": 460,
@@ -183,7 +183,7 @@
 				},
 				"card1Label": {
 					"type": "text",
-					"text": "VERSION",
+					"text": ":xliff:Splash_Card1Label",
 					"top": 188,
 					"left": 324,
 					"width": 121,
@@ -215,7 +215,7 @@
 				},
 				"card2Label": {
 					"type": "text",
-					"text": "STACK",
+					"text": ":xliff:Splash_Card2Label",
 					"top": 188,
 					"left": 483,
 					"width": 121,
@@ -247,7 +247,7 @@
 				},
 				"card3Label": {
 					"type": "text",
-					"text": "TOOLS",
+					"text": ":xliff:Splash_Card3Label",
 					"top": 188,
 					"left": 642,
 					"width": 121,
@@ -258,7 +258,7 @@
 				},
 				"card3Value": {
 					"type": "text",
-					"text": "12 OpenAI tools",
+					"text": ":xliff:Splash_Card3Value",
 					"top": 206,
 					"left": 642,
 					"width": 121,
@@ -280,7 +280,7 @@
 				},
 				"summaryText": {
 					"type": "text",
-					"text": "Same business logic, chat or clinic staff — AI and Admin never disagree.",
+					"text": ":xliff:Splash_Summary",
 					"top": 268,
 					"left": 324,
 					"width": 440,
@@ -291,7 +291,8 @@
 				},
 				"btnLaunchDemo": {
 					"type": "button",
-					"text": "Open Admin →",
+					"text": ":xliff:Splash_BtnLaunch",
+					"action": "accept",
 					"top": 356,
 					"left": 312,
 					"width": 180,

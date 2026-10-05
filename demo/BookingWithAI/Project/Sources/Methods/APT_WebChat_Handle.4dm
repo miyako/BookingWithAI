@@ -25,7 +25,7 @@ Try
 	$userMessage:=APT_TextOrEmpty($body.message)
 	
 	If ($userMessage="")
-		$result.error:="Message is required."
+		$result.error:=Localized string("WebChat_MessageRequired")
 		return $result
 	End if 
 	

@@ -22,7 +22,7 @@
 			"title": ":xliff:CommonMenuFile",
 			"items": [
 				{
-					"title": "Start Demo",
+					"title": ":xliff:MenuItemStartDemo",
 					"method": "runDemo"
 				},
 				{

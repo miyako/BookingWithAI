@@ -19,7 +19,7 @@ var $config : Object
 Try
 	$config:=JSON Parse:C1218(Folder:C1567(fk resources folder:K87:11).file("AIProvider.json").getText())
 Catch
-	ALERT:C41("Missing or unreadable Resources/AIProvider.json. Copy AIProvider.example.json to AIProvider.json and set your API key.")
+	ALERT:C41(Localized string("AlertMissingAIProvider"))
 	return ""
 End try
 

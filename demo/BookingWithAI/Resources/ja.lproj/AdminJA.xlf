@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+	<file datatype="plaintext" original="Admin" source-language="en" target-language="ja">
+		<body>
+			<trans-unit id="Admin_WindowTitle" resname="Admin_WindowTitle">
+				<source>Appointment Manager</source>
+				<target>予約管理</target>
+			</trans-unit>
+			<trans-unit id="Admin_Title" resname="Admin_Title">
+				<source>Appointment Manager</source>
+				<target>予約管理</target>
+			</trans-unit>
+			<trans-unit id="Admin_Subtitle" resname="Admin_Subtitle">
+				<source>Search, filter, and review appointments</source>
+				<target>予約の検索・絞り込み・確認</target>
+			</trans-unit>
+			<trans-unit id="Admin_SearchPlaceholder" resname="Admin_SearchPlaceholder">
+				<source>Search by code or client name...</source>
+				<target>確認コードまたは患者名で検索…</target>
+			</trans-unit>
+			<trans-unit id="Admin_BtnSearch" resname="Admin_BtnSearch">
+				<source>Search</source>
+				<target>検索</target>
+			</trans-unit>
+			<trans-unit id="Admin_FilterUpcoming" resname="Admin_FilterUpcoming">
+				<source>Upcoming</source>
+				<target>今後</target>
+			</trans-unit>
+			<trans-unit id="Admin_FilterPast" resname="Admin_FilterPast">
+				<source>Past</source>
+				<target>過去</target>
+			</trans-unit>
+			<trans-unit id="Admin_FilterAll" resname="Admin_FilterAll">
+				<source>All</source>
+				<target>すべて</target>
+			</trans-unit>
+			<trans-unit id="Admin_FilterCancelled" resname="Admin_FilterCancelled">
+				<source>Cancelled</source>
+				<target>キャンセル済み</target>
+			</trans-unit>
+			<trans-unit id="Admin_Code" resname="Admin_Code">
+				<source>Code</source>
+				<target>確認コード</target>
+			</trans-unit>
+			<trans-unit id="Admin_Date" resname="Admin_Date">
+				<source>Date</source>
+				<target>日付</target>
+			</trans-unit>
+			<trans-unit id="Admin_Time" resname="Admin_Time">
+				<source>Time</source>
+				<target>時刻</target>
+			</trans-unit>
+			<trans-unit id="Admin_Client" resname="Admin_Client">
+				<source>Client</source>
+				<target>患者</target>
+			</trans-unit>
+			<trans-unit id="Admin_Staff" resname="Admin_Staff">
+				<source>Staff</source>
+				<target>担当</target>
+			</trans-unit>
+			<trans-unit id="Admin_Status" resname="Admin_Status">
+				<source>Status</source>
+				<target>ステータス</target>
+			</trans-unit>
+			<trans-unit id="Admin_DetailTitle" resname="Admin_DetailTitle">
+				<source>Appointment detail</source>
+				<target>予約の詳細</target>
+			</trans-unit>
+			<trans-unit id="Admin_DateTime" resname="Admin_DateTime">
+				<source>Date / Time</source>
+				<target>日付／時刻</target>
+			</trans-unit>
+			<trans-unit id="Admin_Reason" resname="Admin_Reason">
+				<source>Reason</source>
+				<target>用件</target>
+			</trans-unit>
+			<trans-unit id="Admin_BtnCancel" resname="Admin_BtnCancel">
+				<source>Cancel appointment</source>
+				<target>予約をキャンセル</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

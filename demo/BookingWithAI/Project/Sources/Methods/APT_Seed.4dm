@@ -15,7 +15,7 @@
 
 #DECLARE()
 
-CONFIRM:C162("This will delete all existing data and reload sample data. Continue?"; "Yes"; "No")
+CONFIRM:C162(Localized string("ConfirmSeed"); Localized string("CommonYes"); Localized string("CommonNo"))
 If (OK#1)
 	return 
 End if 
@@ -176,4 +176,9 @@ For each ($apptData; $appointments)
 	$appt.save()
 End for each 
 
-ALERT:C41("Seed complete! Staff: 3 | Clients: 4 | Appointments: "+String:C10($appointments.length))
+var $message : Text
+$message:=Localized string("AlertSeedComplete")
+$message:=Replace string($message; "{staff}"; String:C10(ds:C1482.Staff.all().length))
+$message:=Replace string($message; "{clients}"; String:C10(ds:C1482.Client.all().length))
+$message:=Replace string($message; "{appointments}"; String:C10($appointments.length))
+ALERT:C41($message)

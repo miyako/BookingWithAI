@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+	<file datatype="plaintext" original="messages" source-language="en" target-language="ja">
+		<body>
+			<trans-unit id="Status_confirmed" resname="Status_confirmed">
+				<source>Confirmed</source>
+				<target>確定済み</target>
+			</trans-unit>
+			<trans-unit id="Status_cancelled" resname="Status_cancelled">
+				<source>Cancelled</source>
+				<target>キャンセル済み</target>
+			</trans-unit>
+			<trans-unit id="AlertSelectAppointment" resname="AlertSelectAppointment">
+				<source>Select an appointment first.</source>
+				<target>先に予約を選択してください。</target>
+			</trans-unit>
+			<trans-unit id="AlertMissingAIProvider" resname="AlertMissingAIProvider">
+				<source>Missing or unreadable Resources/AIProvider.json. Copy AIProvider.example.json to AIProvider.json and set your API key.</source>
+				<target>Resources/AIProvider.jsonが見つからないか、読み込めません。AIProvider.example.jsonをAIProvider.jsonにコピーして、APIキーを設定してください。</target>
+			</trans-unit>
+			<trans-unit id="ConfirmSeed" resname="ConfirmSeed">
+				<source>This will delete all existing data and reload sample data. Continue?</source>
+				<target>既存のデータをすべて削除し、サンプルデータを読み込み直します。続行しますか？</target>
+			</trans-unit>
+			<trans-unit id="AlertSeedComplete" resname="AlertSeedComplete">
+				<source>Seed complete! Staff: {staff} | Clients: {clients} | Appointments: {appointments}</source>
+				<target>サンプルデータを読み込みました。スタッフ：{staff}名｜患者：{clients}名｜予約：{appointments}件</target>
+			</trans-unit>
+			<trans-unit id="WebChat_MessageRequired" resname="WebChat_MessageRequired">
+				<source>Message is required.</source>
+				<target>メッセージを入力してください。</target>
+			</trans-unit>
+			<trans-unit id="WebChat_AIRequestFailed" resname="WebChat_AIRequestFailed">
+				<source>The AI request failed.</source>
+				<target>AIへのリクエストに失敗しました。</target>
+			</trans-unit>
+			<trans-unit id="WebChat_AIRequestFailedDetail" resname="WebChat_AIRequestFailedDetail">
+				<source>The AI request failed: {message}</source>
+				<target>AIへのリクエストに失敗しました：{message}</target>
+			</trans-unit>
+			<trans-unit id="WebChat_TooManySteps" resname="WebChat_TooManySteps">
+				<source>The assistant took too many steps to answer - please try rephrasing.</source>
+				<target>回答までの手順が多すぎました。言い方を変えてもう一度お試しください。</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

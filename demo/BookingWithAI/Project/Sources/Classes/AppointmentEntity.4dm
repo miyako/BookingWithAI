@@ -13,3 +13,13 @@ Function get staffName($event : Object) -> $staffName : Text
 	If ($staff#Null)
 		$staffName:=$staff.fullName
 	End if
+
+Function get statusLabel($event : Object) -> $label : Text
+	// Localised display label; the stored status value ("confirmed", "cancelled") is unchanged
+	$label:=Localized string("Status_"+String(This.status))
+	If ($label="")
+		$label:=String(This.status)
+	End if
+
+Function orderBy statusLabel($event : Object) -> $order : Text
+	$order:="status "+$event.operator

@@ -42,9 +42,9 @@ While (Not:C34($done)) && ($rounds<6)
 	
 	If (Not:C34($completion.success))
 		If ($completion.errors#Null:C1517) && ($completion.errors.length>0)
-			$result.error:="The AI request failed: "+$completion.errors[0].message
+			$result.error:=Replace string(Localized string("WebChat_AIRequestFailedDetail"); "{message}"; $completion.errors[0].message)
 		Else 
-			$result.error:="The AI request failed."
+			$result.error:=Localized string("WebChat_AIRequestFailed")
 		End if 
 		return $result
 	End if 
@@ -91,7 +91,7 @@ While (Not:C34($done)) && ($rounds<6)
 End while 
 
 If (Not:C34($done))
-	$result.error:="The assistant took too many steps to answer - please try rephrasing."
+	$result.error:=Localized string("WebChat_TooManySteps")
 	return $result
 End if 
 
