@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Kestrel Health — Book an appointment</title>
+<title>はやぶさクリニック — ご予約</title>
 <style>
 	:root {
 		--ink: #12181f;
@@ -24,7 +24,7 @@
 	html, body {
 		margin: 0;
 		height: 100%;
-		font-family: -apple-system, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+		font-family: -apple-system, "Segoe UI", "Helvetica Neue", Helvetica, Arial, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", Meiryo, sans-serif;
 		color: var(--ink);
 	}
 	body {
@@ -340,30 +340,30 @@
 		<div class="brand">
 			<span class="mark"></span>
 			<span class="brandText">
-				Kestrel Health
-				<span class="status"><span class="dot"></span>Appointment Assistant · Online</span>
+				はやぶさクリニック
+				<span class="status"><span class="dot"></span>予約アシスタント · オンライン</span>
 			</span>
 		</div>
-		<a class="backLink" href="index.html">← Back to site</a>
+		<a class="backLink" href="index.html">← サイトに戻る</a>
 	</header>
 
 	<main>
 		<div class="chatCol">
 			<div class="messages" id="messages"></div>
 			<form class="composer" id="composer">
-				<input id="messageInput" type="text" placeholder="Ask about booking, rescheduling, or your appointments..." autocomplete="off" />
-				<button type="submit" id="sendBtn" aria-label="Send">
+				<input id="messageInput" type="text" placeholder="予約、予約の変更、ご予約の確認などをどうぞ…" autocomplete="off" />
+				<button type="submit" id="sendBtn" aria-label="送信">
 					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
 				</button>
 			</form>
 		</div>
 		<div class="tool-panel" id="toolPanel">
 			<div class="tool-panel-header">
-				<span class="tool-panel-label">🔧 Tool Activity<span class="tool-count" id="toolCount">0</span></span>
-				<button type="button" class="tool-toggle-btn" id="toolPanelToggle">Hide</button>
+				<span class="tool-panel-label">🔧 ツールアクティビティ<span class="tool-count" id="toolCount">0</span></span>
+				<button type="button" class="tool-toggle-btn" id="toolPanelToggle">隠す</button>
 			</div>
 			<div class="tool-panel-body" id="toolPanelBody">
-				<div class="tool-empty" id="toolEmpty">No tool calls yet — ask something that needs live data, e.g. "What's free with Dr. Bernard tomorrow?"</div>
+				<div class="tool-empty" id="toolEmpty">まだツール呼び出しはありません。最新のデータが必要な質問をしてみてください（例：「明日、佐藤先生の空きはありますか？」）。</div>
 			</div>
 		</div>
 	</main>
@@ -389,7 +389,7 @@
 		messagesEl.scrollTop = messagesEl.scrollHeight;
 	}
 	function nowLabel() {
-		return new Date().toLocaleTimeString(undefined, {hour: "numeric", minute: "2-digit"});
+		return new Date().toLocaleTimeString("ja-JP", {hour: "numeric", minute: "2-digit"});
 	}
 	function addBubble(className, text) {
 		// Plain centered notices/errors don't get the avatar+row treatment.
@@ -407,7 +407,7 @@
 
 		var avatar = document.createElement("div");
 		avatar.className = "avatar " + (className === "user" ? "user" : "ai");
-		avatar.textContent = className === "user" ? "You" : "KH";
+		avatar.textContent = className === "user" ? "私" : "は";
 
 		var col = document.createElement("div");
 		col.className = "bubbleCol";
@@ -431,7 +431,7 @@
 	function formatDateLabel(dateStr) {
 		try {
 			var d = new Date(dateStr + "T00:00:00");
-			return d.toLocaleDateString(undefined, {weekday: "short", month: "short", day: "numeric"});
+			return d.toLocaleDateString("ja-JP", {weekday: "short", month: "short", day: "numeric"});
 		} catch (e) {
 			return dateStr;
 		}
@@ -476,9 +476,9 @@
 					'<span class="tool-name">🔧 ' + escapeHtml(call.name) + '</span>' +
 					'<span class="tool-time">' + nowLabel() + '</span>' +
 				'</div>' +
-				'<div class="tool-entry-label">Arguments</div>' +
+				'<div class="tool-entry-label">引数</div>' +
 				'<pre class="tool-json">' + escapeHtml(prettyJSON(call.arguments)) + '</pre>' +
-				'<div class="tool-entry-label">Result</div>' +
+				'<div class="tool-entry-label">結果</div>' +
 				'<pre class="tool-json">' + escapeHtml(prettyJSON(call.result)) + '</pre>';
 			panelBody.appendChild(entry);
 			countEl.textContent = String(parseInt(countEl.textContent, 10) + 1);
@@ -493,7 +493,7 @@
 		var panel = document.getElementById("toolPanel");
 		toggleBtn.addEventListener("click", function () {
 			var collapsed = panel.classList.toggle("collapsed");
-			toggleBtn.textContent = collapsed ? "Show" : "Hide";
+			toggleBtn.textContent = collapsed ? "表示" : "隠す";
 		});
 	})();
 
@@ -526,7 +526,7 @@
 	// internally run several tool-calling rounds with nothing to report until it's
 	// fully done, so there's no real progress to show - this just rotates reassuring
 	// text on a timer so a multi-second wait doesn't feel dead.
-	var TYPING_MESSAGES = ["Thinking…", "Checking the schedule…", "Looking into that for you…", "Almost there…"];
+	var TYPING_MESSAGES = ["考えています…", "スケジュールを確認しています…", "お調べしています…", "もう少々お待ちください…"];
 
 	function sendMessage(text) {
 		if (!text || busy) return;
@@ -535,7 +535,7 @@
 
 		var typingRow = document.createElement("div");
 		typingRow.className = "row ai";
-		typingRow.innerHTML = '<div class="avatar ai">KH</div><div class="bubbleCol"><div class="bubble ai"><span class="typingLabel">' + TYPING_MESSAGES[0] + '</span> <span class="typing"><span></span><span></span><span></span></span></div></div>';
+		typingRow.innerHTML = '<div class="avatar ai">は</div><div class="bubbleCol"><div class="bubble ai"><span class="typingLabel">' + TYPING_MESSAGES[0] + '</span> <span class="typing"><span></span><span></span><span></span></span></div></div>';
 		messagesEl.appendChild(typingRow);
 		scrollToBottom();
 
@@ -563,7 +563,7 @@
 					try {
 						parsed = JSON.parse(raw);
 					} catch (e) {
-						throw new Error("Server returned a non-JSON response (HTTP " + res.status + "): " + raw.slice(0, 200));
+						throw new Error("サーバーからJSON以外の応答が返されました（HTTP " + res.status + "）：" + raw.slice(0, 200));
 					}
 					return parsed;
 				});
@@ -572,7 +572,7 @@
 				typingRow.remove();
 				var data = parsed && parsed.result;
 				if (!data || !data.success) {
-					var errMsg = (data && data.error) || (parsed && parsed.error && parsed.error.message) || "Something went wrong. Please try again.";
+					var errMsg = (data && data.error) || (parsed && parsed.error && parsed.error.message) || "問題が発生しました。もう一度お試しください。";
 					addBubble("error", errMsg);
 					return;
 				}
@@ -587,7 +587,7 @@
 			})
 			.catch(function (err) {
 				typingRow.remove();
-				addBubble("error", "Couldn't reach the assistant: " + err.message);
+				addBubble("error", "アシスタントに接続できませんでした：" + err.message);
 			})
 			.finally(function () {
 				clearInterval(typingInterval);
@@ -621,11 +621,11 @@
 		for (var i = 0; i < buttons.length; i++) buttons[i].disabled = true;
 		btn.className += " selected";
 
-		var message = "Book me for " + label + " at " + time + (staffName ? " with " + staffName : "") + ".";
+		var message = label + " " + time + "で予約をお願いします" + (staffName ? "（担当：" + staffName + "）" : "") + "。";
 		sendMessage(message);
 	});
 
-	addBubble("notice", conversationID ? "Welcome back — pick up where you left off." : "Ask me to book, reschedule, cancel, or look up an appointment.");
+	addBubble("notice", conversationID ? "おかえりなさい。前回の続きからどうぞ。" : "予約、予約の変更・キャンセル、ご予約の確認をお手伝いします。");
 	input.focus();
 </script>
 </body>
