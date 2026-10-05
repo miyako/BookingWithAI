@@ -59,5 +59,4 @@ See the [localisation template](https://github.com/miyako/4d-technote-localisati
 ## Credits
 
 - Original: Soukaina Bachikh, Customer Success Engineer, 4D Inc.
-- Translation: miyako
 - Produced with [4d-technote-localisation-template](https://github.com/miyako/4d-technote-localisation-template) and GitHub Copilot.
