@@ -274,8 +274,8 @@ def extract_body(doc):
                     state["table"][-1][1].append(it)
                     if all("Bold" in f for f in fonts) and len(state["table"]) > 1:
                         row = state["table"].pop()
-                        if sorted(c["text"].strip() for c in row[1]) != sorted(
-                                c["text"].strip() for c in state["table"][0][1]):
+                        if not {c["text"].strip() for c in row[1]} <= {
+                                c["text"].strip() for c in state["table"][0][1]}:
                             flush_table()  # a new header row starts another table
                         state["table"].append(row)
                 else:

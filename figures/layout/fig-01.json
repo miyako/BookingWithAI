@@ -11,7 +11,8 @@
     304,
     13
    ],
-   "align": "center"
+   "align": "center",
+   "weight": "bold"
   },
   {
    "box": [
@@ -119,7 +120,8 @@
     8,
     201
    ],
-   "align": "center"
+   "align": "center",
+   "rotate": 90
   },
   {
    "box": [
@@ -164,7 +166,8 @@
     17,
     164
    ],
-   "align": "center"
+   "align": "center",
+   "rotate": 90
   },
   {
    "box": [

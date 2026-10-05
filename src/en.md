@@ -152,9 +152,6 @@ UUIDs are never exposed to end users; only the human-readable confirmationCode i
 | Table | Primary Key | Key Fields |
 |---|---|---|
 | Staff | staffID | firstName, lastName, specialty, slotDuration, isActive |
-
-| Table | Primary Key | Key Fields |
-|---|---|---|
 | Client | clientID | firstName, lastName, email, phone, createdAt |
 | Appointment | appointmentID | confirmationCode (APT-XXXXXX), clientID, staffID, date, time, duration, reason, status |
 | Availability | availabilityID | staffID, dayOfWeek (1=Mon…7=Sun, ISO), startTime, endTime |

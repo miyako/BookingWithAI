@@ -1,0 +1,84 @@
+表示される会話
+舞台裏 — OpenAIツール + 4Dハンドラー
+ターン1 — どなたですか？
+OpenAIモデル — ツール呼び出し不要
+ユーザー
+WebチャットUI
+意図を理解：予約の依頼
+「こんにちは、予約をお願いしたいのですが」
+messages[]
+ツールを呼び出す前に本人確認を依頼
+（直接応答 — まだDBアクセス不要）
+AIの応答
+「承知しました。お名前かメールアドレスは？」
+ターン2 — 相手を特定
+モデルがツールを選択 → findClient
+ユーザー
+WebチャットUI
+findClient({name:"Marie Dupont", email:"marie@email.com"})
+「マリー・デュポン、marie@email.comです」
+メッセージを追加
+非表示 → ユーザーには見えない
+APT_Tool_FindClient($1) → Clientテーブルを照会
+メール／電話／名前を通常のコードで照合 — ORDAの.query() DSLは不使用
+createClient()
+顧客が
+いいえ
+はい
+clientIDを返す
+→ 新規clientID（重複確認）
+見つかった？
+→ モデルが続行
+AIの応答
+モデルがclientIDを取得 → 応答を作成し用件を質問
+「マリーさん、担当医と日時は？」
+「マリーさん、どの先生にいつ診てもらいたいですか？」
+ターン3 — 空き状況を確認
+モデルが2つのツール呼び出しを連鎖
+ユーザー
+WebチャットUI
+① getStaffList() → "Dr. Martin"のstaffIDを特定
+「今週、マルタン先生で」
+メッセージを追加
+② getWeekAvailability(staffID) → 7日分の空き枠
+AIの応答
+「月 09:00、火 09:00 … どれにしますか？」
+ターン4 — 枠を予約
+モデルがcreateAppointmentを呼び出し
+ユーザー
+WebチャットUI
+createAppointment(clientID, staffID,
+「月曜日の10:00でお願いします」
+メッセージを追加
+date:"2026-07-27", time:"10:00")
+APT_Tool_CreateAppointment($1)
+AIの応答
+枠を再確認・レコードを挿入・confirmationCode "APT-F8E2C5"を生成
+「予約しました。月曜10:00、マルタン先生。コード：APT-F8E2C5」
+後日 — コードで状況を確認
+モデルが確認コードのパターンを検出
+ユーザー（再訪問）
+WebチャットUI
+「APT-F8E2C5の状況は？」
+新しいセッション
+getAppointmentByCode("APT-F8E2C5") → {status:"confirmed", date…}
+AIの応答
+「ご予約は確定しています：月曜日10:00、マルタン先生です。」
+会話は続く — キャンセル、予約変更、予約一覧…
+全12ツール — モデルがターンごとに適切なものを選択
+checkAvailability
+getStaffList
+getNextAvailable
+getWeekAvailability
+createAppointment
+cancelAppointment
+rescheduleAppointment
+listAppointments
+getAppointmentDetails
+getAppointmentByCode ★
+findClient
+createClient
+予約・空き状況のツール
+本人確認のツール
+★ = 状況確認に使用
+demoAPT · 4D AIKit + OpenAIツール呼び出し — はやぶさクリニック

@@ -12,6 +12,7 @@ Rules for a line in fig-NN.<tgt>.txt:
                                     (use this to merge two source lines
                                     into one translated line)
   * anything else                -> source erased, translation drawn in place
+Item option "rotate": 90 (reads bottom to top) or 270 (top to bottom) draws vertical labels.
 Figures with "replace": "<file>" use that file from figures/ instead (e.g. a localised screenshot).
 Figures with "localize": false (or without a .<tgt>.txt) are copied unchanged.
 """
@@ -147,9 +148,11 @@ def render(name, layout, en, ja):
         fg, ink = foreground(img, box, bg)
         if "fg" in item:
             fg = tuple(item["fg"])
-        size_en = estimate_size(draw, src, box)
+        rot = item.get("rotate", 0)
+        x, y, w, h = box
+        size_en = estimate_size(draw, src, [x, y, h, w] if rot in (90, 270) else box)
         weight = item.get("weight", "regular")
-        left, right = free_span(img, box, bg)
+        left, right = (x, x + w) if rot else free_span(img, box, bg)
         jobs.append((item, src, dst, box, bg, fg, weight, left, right, size_en))
     snapped = snap_sizes([j[-1] for j in jobs])
     jobs = [j[:-1] + (sz,) for j, sz in zip(jobs, snapped)]
@@ -163,6 +166,18 @@ def render(name, layout, en, ja):
             continue
         x, y, w, h = box
         size = (item.get("size") or size_en) * item.get("scale", 1.0)
+        rot = item.get("rotate", 0)
+        if rot in (90, 270):  # vertical label: draw horizontally on a layer, then turn it
+            f = font(weight, size)
+            tw, _ = text_size(draw, dst, f)
+            if tw > h - 4:
+                f = font(weight, size * (h - 4) / tw)
+                tw, _ = text_size(draw, dst, f)
+            layer = Image.new("RGBA", (h, w), (0, 0, 0, 0))
+            ImageDraw.Draw(layer).text((h / 2 - tw / 2 + item.get("dx", 0), w / 2 + item.get("dy", 0)),
+                                       dst, font=f, fill=fg, anchor="lm")
+            img.alpha_composite(layer.rotate(rot, expand=True), (x, y))
+            continue
         margin = max(6, h // 3)
         if item.get("align") == "left":
             avail = right - x - margin
