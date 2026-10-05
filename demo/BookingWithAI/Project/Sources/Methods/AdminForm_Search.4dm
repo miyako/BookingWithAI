@@ -28,12 +28,23 @@ If ($appts.length=0)
 	
 	var $clients : cs:C1710.ClientSelection
 	var $nameParts : Collection
-	$nameParts:=Split string:C1554($query; " ")
+	$nameParts:=Split string:C1554(Replace string($query; Char(12288); " "); " "; sk ignore empty strings:K86:1)
 	
 	If ($nameParts.length>=2)
-		$clients:=ds:C1482.Client.query("firstName = :1 and lastName = :2"; "@"+$nameParts[0]+"@"; "@"+$nameParts[$nameParts.length-1]+"@")
+		// Japanese order (family name first) or Western order
+		$clients:=ds:C1482.Client.query("(lastName = :1 and firstName = :2) or (firstName = :1 and lastName = :2)"; "@"+$nameParts[0]+"@"; "@"+$nameParts[$nameParts.length-1]+"@")
 	Else 
 		$clients:=ds:C1482.Client.query("firstName = :1 or lastName = :1"; "@"+$query+"@")
+		If ($clients.length=0)
+			// Full name typed without a space, e.g. 高橋結衣
+			var $c : cs:C1710.ClientEntity
+			$clients:=ds:C1482.Client.newSelection()
+			For each ($c; ds:C1482.Client.all())
+				If ((Position($query; $c.lastName+$c.firstName)>0) || (Position($query; $c.firstName+$c.lastName)>0))
+					$clients.add($c)
+				End if 
+			End for each 
+		End if 
 	End if 
 	
 	If ($clients.length>0)
