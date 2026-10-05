@@ -29,7 +29,9 @@ DEFAULTS = {
     "figure": {"min_width_pt": 0},  # smaller images (inline icons) are ignored
     "table": {"size": None},        # font size used only by table cells, or null
     "paragraph": {"gap": 3, "short_line_x1": 470},
-    "ocr": {"psm": 11, "min_conf": 30, "noise": r"^[E ]+$"},
+    # engine: tesseract | vision (macOS Apple Vision, much better on diagrams) | auto (vision if available)
+    # scale: upscale factor before Tesseract OCR
+    "ocr": {"engine": "tesseract", "psm": 11, "min_conf": 30, "noise": r"^[E ]+$", "scale": 1},
     "figure_fonts": {},             # {"light"|"regular"|"bold": [path or path#index, ...]}
     "demo_dir": "demo",
 }

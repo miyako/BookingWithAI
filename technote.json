@@ -8,10 +8,16 @@
     "page": 1,
     "lines": 4
   },
-  "skip_pages": [1, 2, 3],
+  "skip_pages": [
+    1,
+    2,
+    3
+  ],
   "footer_y": 712,
   "heading": {
-    "fonts": ["HelveticaNeue-Medium"],
+    "fonts": [
+      "HelveticaNeue-Medium"
+    ],
     "min_size": 12.0,
     "levels_by_x": {
       "72": 2,
@@ -20,11 +26,16 @@
   },
   "code": {
     "colors": [],
-    "fonts": ["Courier"],
+    "fonts": [
+      "Courier"
+    ],
     "indent": null
   },
   "bullets": {
-    "fonts": ["SymbolMT", "Wingdings-Regular"]
+    "fonts": [
+      "SymbolMT",
+      "Wingdings-Regular"
+    ]
   },
   "caption": {
     "italic": true,
@@ -39,5 +50,8 @@
   },
   "table": {
     "size": 10
+  },
+  "ocr": {
+    "engine": "vision"
   }
 }

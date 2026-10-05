@@ -1,0 +1,53 @@
+4, Appointment Manager
+Appointment Manager
+Search, filter, and review appointments
+Search by code or client name...
+Search
+All
+Upcoming
+Past
+Cancelled
+Code
+Date
+Time
+Client
+Staff
+Status
+APT-6BBD55
+2026-08-07
+11:30
+Sophie Laurent
+Jean Martin
+cancelled
+Appointment detail
+APT-DEMO08
+2026-07-16
+09:30
+Nathalie Rousseau
+Claire Bernard
+cancelled
+APT-14814C
+2026-07-14
+12:30
+John Antoine
+Jean Martin
+cancelled
+Code
+АРТ-6BBD55
+APT-DEMO07
+2026-07-12
+13:00
+Antoine Moreau
+Paul Dupuis
+cancelled
+Date / Time
+2026-08-07
+11:30
+Client
+Sophie Laurent
+Staff
+Jean Martin
+Status
+cancelled
+Reason
+Cancel appointment

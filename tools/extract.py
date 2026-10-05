@@ -14,7 +14,9 @@ import argparse
 import json
 import re
 import subprocess
+import shutil
 import sys
+import tempfile
 from pathlib import Path
 
 import pymupdf
@@ -316,9 +318,36 @@ def extract_body(doc):
     return "\n".join(out), figures
 
 
+def vision_lines(png: Path):
+    """Apple Vision OCR (macOS): far better than Tesseract on small text in coloured diagram boxes."""
+    out = subprocess.run(["swift", str(ROOT / "tools" / "ocr_vision.swift"), str(png)],
+                         capture_output=True, text=True, check=True).stdout
+    lines = []
+    for r in json.loads(out):
+        text = r["text"].strip(" |—-~_")
+        if r["conf"] * 100 < CFG["ocr"]["min_conf"] or not re.search(r"[A-Za-z]{2}|\d", text) \
+                or re.search(CFG["ocr"]["noise"], text):
+            continue
+        lines.append({"box": r["box"], "text": text})
+    lines.sort(key=lambda l: (l["box"][1] // 10, l["box"][0]))
+    return lines
+
+
 def ocr_lines(png: Path):
     ocr = CFG["ocr"]
-    tsv = subprocess.run(["tesseract", str(png), "-", "--psm", str(ocr["psm"]), "tsv"],
+    engine = ocr["engine"]
+    if engine == "auto":
+        engine = "vision" if sys.platform == "darwin" and shutil.which("swift") else "tesseract"
+    if engine == "vision":
+        return vision_lines(png)
+    scale = ocr["scale"]
+    src = png
+    if scale != 1:  # small diagram text OCRs much better upscaled
+        from PIL import Image
+        im = Image.open(png).convert("RGB")
+        src = Path(tempfile.mkdtemp()) / png.name
+        im.resize((round(im.width * scale), round(im.height * scale)), Image.LANCZOS).save(src)
+    tsv = subprocess.run(["tesseract", str(src), "-", "--psm", str(ocr["psm"]), "tsv"],
                          capture_output=True, text=True, check=True).stdout
     groups = {}
     for row in tsv.splitlines()[1:]:
@@ -327,7 +356,8 @@ def ocr_lines(png: Path):
             continue
         key = (int(f[2]), int(f[3]), int(f[4]))
         groups.setdefault(key, []).append(
-            {"x": int(f[6]), "y": int(f[7]), "w": int(f[8]), "h": int(f[9]), "text": f[11]})
+            {"x": round(int(f[6]) / scale), "y": round(int(f[7]) / scale),
+             "w": round(int(f[8]) / scale), "h": round(int(f[9]) / scale), "text": f[11]})
     lines = []
     for ws in groups.values():
         ws.sort(key=lambda w: w["x"])

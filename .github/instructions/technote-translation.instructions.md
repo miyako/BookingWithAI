@@ -46,7 +46,8 @@ The workflow and checkpoints are in `.github/copilot-instructions.md`. This file
 | `figure.min_width_pt` | Images narrower than this (inline icons) are not extracted as figures |
 | `table.size` | Font size used only by table cells (or null) |
 | `paragraph.gap`, `short_line_x1` | Start a new paragraph after a vertical gap > `gap`, or after a short line ending in `.` or `:` |
-| `ocr.psm`, `min_conf`, `noise` | Tesseract page-segmentation mode, word confidence threshold, regex of junk lines |
+| `ocr.engine` | `tesseract` (default), `vision` (macOS Apple Vision via `tools/ocr_vision.swift`; far better on small text in coloured boxes) or `auto` |
+| `ocr.psm`, `min_conf`, `noise`, `scale` | Tesseract page-segmentation mode, word confidence threshold, regex of junk lines, upscale factor before OCR (2–3 helps small diagram text; boxes stay in image pixels) |
 | `figure_fonts` | `{light, regular, bold: ["path#index", ...]}`: overrides the per-platform defaults |
 
 `make inspect` derives most of these from a style histogram of the body pages:
