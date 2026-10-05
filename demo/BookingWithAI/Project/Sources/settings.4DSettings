@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><preferences stamp="6">
+<?xml version="1.0" encoding="UTF-8"?><preferences stamp="8">
 	<com.4d>
 		<web>
 			<standalone_server>
@@ -12,5 +12,8 @@
 			</standalone_server>
 		</web>
 		<general startup_environnement="1"/>
+		<interface>
+			<user splash_screen="false"/>
+		</interface>
 	</com.4d>
 </preferences>

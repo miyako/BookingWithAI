@@ -78,7 +78,8 @@
 					"placeholder": ":xliff:Admin_SearchPlaceholder",
 					"fill": "#f5f6f8",
 					"borderStyle": "none",
-					"borderRadius": 8
+					"borderRadius": 8,
+					"multiline": "no"
 				},
 				"btnSearch": {
 					"type": "button",
@@ -211,7 +212,7 @@
 								"stroke": "#696969"
 							},
 							"dataSource": "This:C1470.date",
-							"width": 85,
+							"width": 76,
 							"footer": {
 								"name": "Footer2"
 							},
@@ -227,7 +228,7 @@
 								"stroke": "#696969"
 							},
 							"dataSource": "This:C1470.time",
-							"width": 84,
+							"width": 64,
 							"footer": {
 								"name": "Footer3"
 							},
