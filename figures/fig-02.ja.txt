@@ -22,7 +22,7 @@ findClient({name:"Marie Dupont", email:"marie@email.com"})
 APT_Tool_FindClient($1) → Clientテーブルを照会
 メール／電話／名前を通常のコードで照合 — ORDAの.query() DSLは不使用
 createClient()
-顧客が
+患者が
 いいえ
 はい
 clientIDを返す

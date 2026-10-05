@@ -52,7 +52,7 @@ Full-width `（）` and `：` in prose. First occurrence of a technical term: �
 | round (of tool calls) / round trip | ラウンド / 往復 | |
 | turn (visitor turn) | ターン（訪問者の1ターン） | |
 | visitor | 訪問者 | |
-| client (customer) | 顧客 | Table name Client stays as is |
+| client (patient) | 患者 | Editor: clinic context. Table name Client stays as is |
 | staff (member) | スタッフ | |
 | appointment / booking | 予約 | |
 | reschedule | 予約の変更 | |
