@@ -83,6 +83,14 @@ Full-width `（）` and `：` in prose. First occurrence of a technical term: �
 |---|---|---|
 | Kestrel Health | はやぶさクリニック | Decided by the editor; demo and document |
 | GPT-4o (LLM) in fig-01 | GPT-5 (LLM) | Editor: consistent with model: "gpt-5" in the code |
-| Dr. Jean Martin, Dr. Claire Bernard, Paul Dupuis | (Phase 4) | Placeholder: Latin in data/code, katakana (マルタン先生…) in quoted speech |
-| Marie Dupont, Thomas Leroy, Nathalie Rousseau, Antoine Moreau, Sophie Laurent | (Phase 4) | Placeholder, to be replaced with Japanese names |
+| Dr. Jean Martin (Cardiology) | 田中 健一（田中先生） | Staff; k.tanaka@hayabusa-clinic.example, +81 3 1234 5678 |
+| Dr. Claire Bernard (General Medicine) | 佐藤 美咲（佐藤先生） | Staff; m.sato@hayabusa-clinic.example, +81 3 1234 5679 |
+| Paul Dupuis (Support) | 鈴木 大輔 | Staff; d.suzuki@hayabusa-clinic.example, +81 3 1234 5680 |
+| Marie Dupont | 高橋 結衣 | Patient; yui.takahashi@example.com, +81 90 1234 5678 |
+| Thomas Leroy | 伊藤 翔太 | Patient; shota.ito@example.com, +81 90 9876 5432 |
+| Nathalie Rousseau | 渡辺 真由美 | Patient; mayumi.watanabe@example.com, +81 80 1122 3344 |
+| Antoine Moreau | 中村 拓也 | Patient; takuya.nakamura@example.com, +81 70 5566 7788 |
+| Sophie Laurent (new patient, scene 2) | 小林 さくら | sakura.kobayashi@example.com |
+| Name order | 姓 名 (family name first) | fullName = lastName + " " + firstName in the demo |
+| Appointment reasons | 定期健診, 年次健康診断, 機器のサポート, 経過観察, インフルエンザの症状, 循環器内科の診察, サポートの依頼, 患者による予約変更 | APT_Seed |
 | Cardiology / General Medicine / Support | 循環器内科 / 一般内科 / 受付サポート | Specialties in the seeded data |
