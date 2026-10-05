@@ -62,10 +62,12 @@ Full-width `（）` and `：` in prose. First occurrence of a technical term: �
 | seed / seeded | 初期投入 / 初期投入された | |
 | web chat | Webチャット | |
 | Web Chat UI | WebチャットUI | fig-02 |
-| Admin form | 管理フォーム | |
+| Admin form | 管理フォーム | Window title 予約管理 (Appointment Manager) |
+| Status confirmed / cancelled | 確定済み / キャンセル済み | Admin form display label (statusLabel); stored values stay English |
+| Reason (appointment) | 用件 | Admin detail label |
 | Tool Activity panel | ツールアクティビティパネル | UI label 「🔧 ツールアクティビティ」; must match the localised demo (Phase 5) |
 | filter buttons Upcoming / Past / All / Cancelled | ［今後］／［過去］／［すべて］／［キャンセル済み］ | Must match the localised Admin form |
-| Cancel (button) | ［キャンセル］ | |
+| Cancel appointment (button) | ［予約をキャンセル］ | Admin form button label (XLIFF Admin_BtnCancel) |
 | AI Provider | AIプロバイダー | |
 | Tech Note / Tech Tip | テクニカルノート / Tech Tip | |
 | Beat (demo section) | シーン | |
