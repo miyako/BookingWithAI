@@ -8,3 +8,9 @@ demo/*/Data/
 demo/*/Logs/
 demo/*/userPreferences.*/
 demo/*/Project/DerivedData/
+
+# AI provider settings with API keys: never commit
+demo/*/Project/Sources/AIProviders.json
+demo/*/Resources/AIProvider.json
+demo/*/Settings/AIProviders.json
+demo/*/Data/Settings/AIProviders.json

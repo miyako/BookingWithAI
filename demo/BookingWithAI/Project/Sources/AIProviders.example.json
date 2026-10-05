@@ -1,0 +1,8 @@
+{
+	"providers": {
+		"openai": {
+			"baseURL": "https://api.openai.com/v1/",
+			"apiKey": "sk-your-openai-api-key-here"
+		}
+	}
+}

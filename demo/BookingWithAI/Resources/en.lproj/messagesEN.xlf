@@ -15,8 +15,8 @@
 				<target>Select an appointment first.</target>
 			</trans-unit>
 			<trans-unit id="AlertMissingAIProvider" resname="AlertMissingAIProvider">
-				<source>Missing or unreadable Resources/AIProvider.json. Copy AIProvider.example.json to AIProvider.json and set your API key.</source>
-				<target>Missing or unreadable Resources/AIProvider.json. Copy AIProvider.example.json to AIProvider.json and set your API key.</target>
+				<source>Missing OpenAI API key. Copy Project/Sources/AIProviders.example.json to AIProviders.json in the same folder and set your API key, or add an OpenAI provider in the AI page of the 4D Settings.</source>
+				<target>Missing OpenAI API key. Copy Project/Sources/AIProviders.example.json to AIProviders.json in the same folder and set your API key, or add an OpenAI provider in the AI page of the 4D Settings.</target>
 			</trans-unit>
 			<trans-unit id="ConfirmSeed" resname="ConfirmSeed">
 				<source>This will delete all existing data and reload sample data. Continue?</source>
